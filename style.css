@@ -461,7 +461,7 @@ a.contact-item:hover {
    ========================================= */
 .project-detail-nav {
   height: 60px;
-  padding: 0 max(40px, calc((100% - 900px) / 2 + 40px));
+  padding: 0 max(20px, calc((100% - 900px) / 2 + 40px));
   border-bottom: 1px solid #eee;
   position: sticky;
   top: 0;
