@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Self-Balancing Robot – Yaroslav Semenov</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <nav class="project-detail-nav">
+    <a href="../index.html" class="nav-logo">YS</a>
+    <a href="../index.html#projects">← All Projects</a>
+  </nav>
+
+  <header class="project-header">
+    <p class="project-tag">
+      Ruhr-Universität Bochum · Personal Project · 2020
+    </p>
+    <h1>Self-Balancing Two-Wheeled Robot</h1>
+    <p class="project-subtitle">
+      Built and programmed a Segway-style balancing robot 
+      from a kit of electronic components — going beyond 
+      the official tutorials to fix a bug in the 
+      reference code and achieve stable balance 
+      with Bluetooth control from a mobile phone.
+    </p>
+  </header>
+
+  <div class="project-hero">
+    <video id="hero-video" autoplay loop muted>
+      <source src="../media/Robot video full.mp4" type="video/mp4">
+    </video>
+    <p class="caption">
+      Completed robot balancing on two wheels —
+      controlled via Bluetooth serial terminal
+      from a mobile phone
+    </p>
+  </div>
+
+  <main class="project-content">
+
+    <section>
+      <h2>Background</h2>
+      <p>
+        As part of the Mechatronic Systems module at 
+        Ruhr-Universität Bochum, students were offered 
+        an entirely voluntary side project — no grade 
+        bonus, no credit points, purely optional. 
+        Those who signed up received a kit of 
+        electronic components and a set of 
+        video tutorials (~13 hours of recorded 
+        instructions) to build a small 
+        self-balancing robot.
+      </p>
+      <p>
+        The robot's concept is similar to a Segway: 
+        two motorised wheels, an IMU sensor 
+        to track orientation, and a microcontroller 
+        running a control loop to keep the 
+        robot upright by continuously adjusting 
+        wheel speed and direction.
+      </p>
+    </section>
+
+    <section>
+      <h2>Hardware</h2>
+      <ul>
+        <li>
+          <strong>Microcontroller:</strong> Teensy — 
+          compact, fast, suitable for 
+          real-time control loops
+        </li>
+        <li>
+          <strong>IMU sensor:</strong> inertial 
+          measurement unit tracking tilt angle 
+          and angular velocity
+        </li>
+        <li>
+          <strong>Motors:</strong> two small 
+          DC motors with encoders for 
+          speed feedback
+        </li>
+        <li>
+          <strong>Communication:</strong> 
+          Bluetooth module for wireless 
+          control via serial terminal
+        </li>
+        <li>
+          <strong>Frame:</strong> custom chassis, 
+          hand-assembled and glued
+        </li>
+        <li>
+          <strong>Electronics:</strong> all components 
+          hand-soldered onto the board
+        </li>
+      </ul>
+    </section>
+
+    <figure>
+            <img src="../media/Robot components.jpg" alt="Robot components laid out"> 
+      <figcaption>
+        Kit components — Teensy microcontroller, 
+        IMU, DC motors with encoders, 
+        Bluetooth module
+      </figcaption>
+    </figure>
+
+    <section>
+      <h2>The Problem with the Official Tutorials</h2>
+      <p>
+        The video tutorials covered construction and 
+        wiring in detail — but stopped short of 
+        a working solution. At the final stage, 
+        where the robot was supposed to actually 
+        balance, the tutorial authors abandoned 
+        the project. The robot in their videos 
+        never achieved stable balance.
+      </p>
+      <p>
+        This meant that completing the project 
+        required going beyond the provided material 
+        and finding an independent solution.
+      </p>
+    </section>
+
+    <section>
+      <h2>What I Did</h2>
+      <p>
+        After working through the assembly and 
+        getting the hardware running, I analysed 
+        the reference code carefully and identified 
+        a bug in the control logic — a flaw in 
+        the way the IMU readings were being 
+        used to drive the motors.
+      </p>
+      <p>
+        I corrected the bug, tuned the 
+        control parameters, and extended 
+        the implementation. The result was 
+        a robot that balanced stably and 
+        could be driven in real time via 
+        Bluetooth from a mobile phone 
+        using a serial terminal app.
+      </p>
+    </section>
+
+     <section>
+      <h2>What This Project Demonstrates</h2>
+      <p>
+        This was a fully voluntary project with 
+        no academic incentive. I took it on 
+        because the intersection of mechanics, 
+        electronics and software genuinely 
+        interested me — and because I wanted 
+        to build something that actually worked, 
+        not just follow instructions.
+      </p>
+      <p>
+        When the official guidance ran out, 
+        I did not stop. Finding and fixing 
+        the bug in someone else's code, 
+        then extending it further, 
+        is the part I am most satisfied with.
+      </p>
+    </section>
+
+    <section>
+      <h2>Tools & Skills</h2>
+      <div class="tags">
+        <span>Teensy microcontroller</span>
+        <span>IMU sensor integration</span>
+        <span>DC motors & encoders</span>
+        <span>Control loop programming</span>
+        <span>Bluetooth serial communication</span>
+        <span>Soldering & electronics assembly</span>
+        <span>Debugging embedded code</span>
+        <span>C / C++</span>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="project-bottom-nav">
+    <a href="battery.html">
+      <div class="nav-card-text">
+        <span class="nav-direction">← Previous</span>
+        <span class="nav-title">Battery Safety</span>
+      </div>
+      <img class="nav-card-img" src="../media/Battery Preview.jpg" alt="Battery Safety">
+    </a>
+    <a href="ktl.html" class="nav-next">
+      <img class="nav-card-img" src="../media/KTL asdv.png" alt="KTL Simulation">
+      <div class="nav-card-text">
+        <span class="nav-direction">Next →</span>
+        <span class="nav-title">KTL Simulation</span>
+      </div>
+    </a>
+  </div>
+
+  <script>
+    const video = document.getElementById('hero-video');
+    video.addEventListener('mouseenter', () => video.setAttribute('controls', ''));
+    video.addEventListener('mouseleave', () => video.removeAttribute('controls'));
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Battery Safety – Yaroslav Semenov</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <nav class="project-detail-nav">
+    <a href="../index.html" class="nav-logo">YS</a>
+    <a href="../index.html#projects">← All Projects</a>
+  </nav>
+
+  <header class="project-header">
+    <p class="project-tag">
+      BMW · Master's Thesis · Aug 2024 – May 2025
+    </p>
+    <h1>Simulative Analysis of Internal Short Circuit Criticality in Li-Ion Cells</h1>
+    <p class="project-subtitle">
+      Built a 3D thermal simulation in Star-CCM+ to determine 
+      the critical heat generation threshold at which 
+      manufacturing-induced internal short circuits 
+      can trigger thermal runaway — providing a quantitative 
+      basis for BMW's on-board battery diagnostics system.
+    </p>
+  </header>
+
+  <div class="project-hero">
+    <canvas id="rotation-canvas" style="max-width: 500px; width: 100%; height: auto; border-radius: 12px; display: block; margin: 0 auto;"></canvas>
+    <p class="caption">
+      Star-CCM+ simulation model — cylindrical Li-Ion cells in a representative pack section with surrounding foam
+    </p>
+  </div>
+
+  <main class="project-content">
+
+    <section>
+      <h2>Background</h2>
+      <p>
+        At the production volumes required for BMW's 
+        Neue Klasse platform — hundreds of millions 
+        of cells — a small fraction of cells will 
+        inevitably contain manufacturing defects: 
+        metallic particles in the jelly roll, 
+        electrode micro-cracks, tab burrs folding inward. 
+        Most are caught by quality monitoring systems; 
+        some are not.
+      </p>
+      <p>
+        A defective cell may initially perform normally 
+        but degrade progressively under cycling, 
+        eventually developing an internal short circuit 
+        that can escalate to thermal runaway and fire.
+      </p>
+    </section>
+
+    <section>
+      <h2>The Problem</h2>
+      <p>
+        BMW needed a software-only on-board diagnostic 
+        system capable of flagging suspicious cells 
+        using only sensors already present in 
+        production vehicles — specifically, 
+        per-parallel-group voltage monitoring 
+        (already standard in every BMS).
+      </p>
+      <p>
+        The core challenge: setting detection thresholds. 
+        Too sensitive → excessive false alarms and 
+        unnecessary service visits. 
+        Too lenient → dangerous defects go undetected. 
+        Neither extreme was acceptable.
+      </p>
+      <p>
+        What was missing was a quantitative understanding 
+        of how much heat a manufacturing-induced 
+        internal short circuit generates, 
+        and how much heat is needed to trigger 
+        thermal runaway under real operating conditions.
+      </p>
+    </section>
+
+    <figure>
+      <img src="../media/Battery Diagnostic Scheme.jpg" alt="Diagnostic logic diagram">
+      <figcaption>
+        Voltage monitoring estimates short circuit current and heat generation —
+        my task was to determine at what heat level the cell becomes safety-critical.
+      </figcaption>
+    </figure>
+
+    <section>
+      <h2>My Approach</h2>
+      <p>
+        After an intensive literature review of 
+        degradation mechanisms — from initial defect 
+        through SEI growth, lithium plating, 
+        separator failure, to thermal runaway — 
+        I developed a 3D thermal simulation in Star-CCM+.
+      </p>
+
+      <figure>
+        <img src="../media/ISC mesh model.jpg" alt="Diagnostic logic diagram">
+        <figcaption>
+          Star-CCM+ mesh of a single cylindrical cell — the inset shows the point heat source (yellow) emulating an internal short circuit, with a locally refined mesh to resolve the steep thermal gradients
+        </figcaption>
+      </figure>
+
+      <p>
+        Key model features:
+      </p>
+      <ul>
+        <li>
+          Cylindrical cell geometry with jelly roll, 
+          surrounded by neighbouring cells 
+          in a representative pack section
+        </li>
+        <li>
+          Configurable point heat source 
+          emulating short circuits of varying intensity
+        </li>
+        <li>
+          Thermal reactivity of the jelly roll 
+          implemented from ARC (Accelerated Rate 
+          Calorimetry) measurement data — 
+          capturing exothermic reactions triggered 
+          at elevated temperatures
+        </li>
+        <li>
+          Anisotropic thermal conductivity — 
+          distinguishing radial (low, through 
+          separator sandwich layers) from 
+          axial (high, along electrode conductors) 
+          heat transport
+        </li>
+        <li>
+          Configurable ambient temperature and 
+          heat dissipation boundary conditions
+        </li>
+        <li>
+          Surrounding cell and foam thermal 
+          properties included
+        </li>
+      </ul>
+    </section>
+
+    <figure>
+      <video id="thermal-runaway-video" muted loop playsinline>
+        <source src="../media/Thermal Runaway.mp4" type="video/mp4">
+      </video>
+      <figcaption>
+        3D thermal model in Star-CCM+ — 
+        cylindrical cell with jelly roll, 
+        point heat source and surrounding pack geometry
+      </figcaption>
+    </figure>
+
+    <section>
+      <h2>Results</h2>
+      <ul>
+        <li>
+          Critical heat generation threshold 
+          determined in Watts — the boundary below 
+          which the cell self-cools safely, 
+          above which thermal runaway 
+          becomes inevitable over time
+        </li>
+        <li>
+          Threshold mapped across varying ambient 
+          temperatures and state-of-charge conditions
+        </li>
+        <li>
+          Results provide direct quantitative input 
+          for parametrising the on-board 
+          diagnostic algorithm
+        </li>
+        <li>
+          Simulation confirmed that voltage-based 
+          self-discharge monitoring can in principle 
+          detect the relevant defect intensities 
+          before they become safety-critical
+        </li>
+        <li>
+          Presentation circulated across two BMW 
+          departments and repeated for a second 
+          audience on request
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Tools & Skills</h2>
+      <div class="tags">
+        <span>Star-CCM+</span>
+        <span>CFD / Thermal simulation</span>
+        <span>Li-Ion battery technology</span>
+        <span>Battery safety & degradation mechanisms</span>
+        <span>ARC calorimetry data</span>
+        <span>On-board diagnostics (OBD)</span>
+        <span>Scientific literature analysis</span>
+        <span>Citavi</span>
+        <span>MATLAB</span>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="project-bottom-nav">
+    <a href="nvh.html">
+      <div class="nav-card-text">
+        <span class="nav-direction">← Previous</span>
+        <span class="nav-title">NVH Test Bench</span>
+      </div>
+      <img class="nav-card-img" src="../media/Test Bench CAD.jpg" alt="NVH Test Bench">
+    </a>
+    <a href="roboter.html" class="nav-next">
+      <img class="nav-card-img" src="../media/Robot preview static.jpg" alt="Self-Balancing Robot">
+      <div class="nav-card-text">
+        <span class="nav-direction">Next →</span>
+        <span class="nav-title">Balancing Robot</span>
+      </div>
+    </a>
+  </div>
+
+  <script>
+    // --- Image Sequence: Battery Cells Rotation ---
+    const canvas = document.getElementById('rotation-canvas');
+    const ctx = canvas.getContext('2d');
+
+    const FIRST_FRAME = 200;
+    const FRAME_COUNT = 69;
+    const frames = [];
+    let scrubEnd = 0;
+    let initialized = false;
+
+    for (let i = 0; i < FRAME_COUNT; i++) {
+      const img = new Image();
+      img.src = `../media/2046 WebP/rotate hd ${FIRST_FRAME + i}.webp`;
+      if (i === 0) {
+        img.onload = () => {
+          canvas.width = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+          ctx.drawImage(img, 0, 0);
+          const rect = canvas.getBoundingClientRect();
+          scrubEnd = rect.top + window.scrollY - window.innerHeight / 2.5 + rect.height / 2;
+          initialized = true;
+        };
+      }
+      frames.push(img);
+    }
+
+    function drawFrame() {
+      if (!initialized) return;
+      const progress = Math.max(0, Math.min(1, window.scrollY / scrubEnd));
+      const frameIndex = Math.min(Math.floor(progress * FRAME_COUNT), FRAME_COUNT - 1);
+      const img = frames[frameIndex];
+      if (img.complete) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.drawImage(img, 0, 0);
+      }
+    }
+
+    window.addEventListener('scroll', drawFrame, { passive: true });
+  </script>
+
+  <script>
+    const video = document.getElementById('thermal-runaway-video');
+    let userPaused = false;
+    let observerPausing = false;
+
+    // Distinguish user-initiated pause from programmatic pause
+    video.addEventListener('pause', () => {
+      if (!observerPausing) userPaused = true;
+      observerPausing = false;  // reset here, after the async event fires
+    });
+    video.addEventListener('play', () => {
+      userPaused = false;
+    });
+
+    video.addEventListener('mouseenter', () => video.setAttribute('controls', ''));
+    video.addEventListener('mouseleave', () => video.removeAttribute('controls'));
+
+    const observer = new IntersectionObserver(
+      entries => {
+        if (entries[0].isIntersecting) {
+          if (!userPaused) video.play();
+        } else {
+          observerPausing = true;
+          video.pause();
+          // observerPausing is reset inside the pause event listener
+        }
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(video);
+  </script>
+
+</body>
+</html>

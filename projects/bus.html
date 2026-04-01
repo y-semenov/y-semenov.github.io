@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bus A/C Validation – Yaroslav Semenov</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <nav class="project-detail-nav">
+    <a href="../index.html" class="nav-logo">YS</a>
+    <a href="../index.html#projects">← All Projects</a>
+  </nav>
+
+  <header class="project-header">
+    <p class="project-tag">
+      MAHLE · Internship + Bachelor's Thesis · 
+      Sep 2021 – Feb 2022
+    </p>
+    <h1>Bus A/C Prototype Validation in Climate Chamber</h1>
+    <p class="project-subtitle">
+      Instrumented a full-size bus with 100+ sensors, 
+      transplanted a compact Dachklimaanlage prototype, 
+      and validated its performance against a series unit 
+      in a climate chamber — confirming the prototype's 
+      readiness for the electric bus market.
+    </p>
+  </header>
+
+  <div class="project-hero">
+    <img src="../media/bus climate chamber.jpg" alt="Bus in climate chamber">
+    <p class="caption">
+      Full-size bus equipped with my on-board data acquisition system, inside the climate chamber
+    </p>
+  </div>
+
+  <main class="project-content">
+
+    <section>
+      <h2>Background</h2>
+      <p>
+        MAHLE developed a compact roof-mounted A/C prototype 
+        (<em>Dachklimaanlage</em>) for electric buses — 
+        more than 2.5× smaller in footprint than conventional 
+        systems. Roof space in electric buses is critical: 
+        battery packs, power electronics and hydrogen tanks 
+        compete for the same area. A smaller A/C unit 
+        directly enables more energy storage capacity.
+      </p>
+      <p>
+        The prototype had been validated in isolation 
+        (lab bench tests). The next step was 
+        full-system validation inside a real bus 
+        and comparison to the original series unit 
+        under identical climate conditions.
+      </p>
+    </section>
+
+    <section>
+      <h2>Phase 1 – Sensor Installation</h2>
+      <p>
+        I joined the project mid-instrumentation and took 
+        over as the previous student intern completed her 
+        placement. Over the following weeks I installed 
+        and commissioned the full sensor network:
+      </p>
+      <ul>
+        <li>
+          30–40 thermocouples inside the cabin 
+          (3 height levels × multiple longitudinal zones)
+        </li>
+        <li>
+          Temperature and pressure sensors throughout 
+          the air distribution ducts
+        </li>
+        <li>
+          Temperature, pressure and RPM sensors at every 
+          inlet/outlet of the refrigeration cycle 
+          (compressor, evaporators, condensers, 
+          expansion valves)
+        </li>
+        <li>
+          Temperature and pressure sensors on the 
+          refrigerant (Kältemittel) circuit
+        </li>
+        <li>
+          All 100+ channels consolidated via 
+          SCADAS data acquisition hardware 
+          and monitored in IMC Studio
+        </li>
+      </ul>
+    </section>
+
+    <figure>
+      <img src="../media/Bus data acquisition.jpg" alt="Sensor network overview">
+      <figcaption>
+        My on-board measurement station — 100+ sensors including thermocouples, pressure transducers, and RPM sensors for turbines and fans, routed to a central DAQ node inside the bus cabin
+      </figcaption>
+    </figure>
+
+    <section>
+      <h2>Phase 2 – Climate Chamber Tests (Series Unit)</h2>
+      <p>
+        I selected a suitable climate chamber facility 
+        (near Bielefeld) through a comparative analysis 
+        of providers covering cost, distance, 
+        chamber size and technical requirements.
+      </p>
+      <p>
+        Tests ran over 3–4 days at ambient temperatures 
+        of 30–40 °C. Each test cycle: pre-soak overnight 
+        → baseline measurement → cooling active for 
+        ~30–60 min → cool-down measurement. 
+        Multiple compressor speeds and ambient 
+        temperatures were tested.
+      </p>
+    </section>
+
+    <figure>
+      <img src="../media/HVAC Measurement.jpg" alt="Sensor network overview">
+      <figcaption>
+        IMC Studio dashboard I built for real-time monitoring — refrigerant
+        temperature and pressure at the inlet and outlet of each A/C cycle component:
+        condenser, compressor, expansion valve and evaporator
+      </figcaption>
+    </figure>
+
+    <section>
+      <h2>Phase 3 – Prototype Transplant</h2>
+      <p>
+        With 2.5 weeks to replace the series unit with 
+        the prototype, I coordinated the full retrofit 
+        campaign — which I describe as a surgical 
+        transplant across four systems:
+      </p>
+      <ul>
+        <li>
+          <strong>Skeleton:</strong> designed and assembled 
+          a stainless steel adapter frame to mechanically 
+          bridge the prototype (half the size of the 
+          original) to the bus roof mounting points
+        </li>
+        <li>
+          <strong>Airways:</strong> devised and hand-built 
+          an airtight connection between prototype 
+          air outlets and the bus distribution ducts
+        </li>
+        <li>
+          <strong>Circulatory system:</strong> identified 
+          the port mismatch between prototype and bus 
+          refrigerant lines, specified and ordered 
+          custom hoses, coordinated refrigerant 
+          drainage and refill with licensed technicians
+        </li>
+        <li>
+          <strong>Nervous system:</strong> wired prototype 
+          control signals, re-installed the full 
+          sensor network, calibrated all channels 
+          in IMC Studio
+        </li>
+      </ul>
+      <p>
+        I also identified and resolved a design oversight 
+        in the protective dome mounting — sourcing 
+        a budget fix from a local hardware store.
+      </p>
+    </section>
+
+    <figure class="figure-two-col">
+      <img src="../media/Roof before.jpg" alt="Bus roof before installation">
+      <img src="../media/Roof after.jpg" alt="Bus roof after installation">
+      <figcaption>
+        Removing the original rooftop unit before installing a custom adapter frame and the experimental MAHLE compact prototype
+      </figcaption>
+    </figure>
+
+    <section>
+      <h2>Phase 4 – Numerical Model (Bachelor's Thesis)</h2>
+      <p>
+        Experimental data from both test campaigns was 
+        used to build a validated 1D thermodynamic 
+        simulation in MAHLE's internal BISS software — 
+        a digital twin of the complete cooling system 
+        covering three circuits: refrigerant cycle, 
+        cabin air loop, and external condenser air loop.
+      </p>
+      <p>
+        The model could predict system behaviour at 
+        varying ambient temperatures, humidity levels 
+        and compressor speeds — enabling engineers 
+        to test control strategies and identify 
+        over-dimensioned components without 
+        returning to the climate chamber.
+      </p>
+      <p>
+        The model predicts cabin air temperature within 2°C of the measured
+        values across all test conditions:
+      </p>
+    </section>
+
+    <figure>
+      <img src="../media/Kabinentemperatur.jpg" alt="Pressure-Enthalpy Diagram">
+      <figcaption>
+        Measured vs. simulated cabin air temperature during a climate chamber test run —
+        close agreement validates the thermal model developed for the prototype
+      </figcaption>
+    </figure>
+
+    <section>
+      <p>
+        Validation extended to the refrigerant circuit as well.
+        The pressure-enthalpy diagram overlays measured and simulated
+        cycle states across all four key components — condenser,
+        compressor, expansion valve and evaporator — with deviations
+        below 5% at every operating point.
+      </p>
+    </section>
+
+    <figure>
+      <img src="../media/log ph diagram.jpg" alt="Pressure-Enthalpy Diagram">
+      <figcaption>
+        Pressure-enthalpy (log p-h) diagram with measured (red) and simulated (blue)
+        refrigeration cycles overlaid — deviations below 5% across all cycle states
+        confirm the accuracy of the simulation model
+      </figcaption>
+    </figure>
+
+    <section>
+      <h2>Results</h2>
+      <ul>
+        <li>
+          Prototype demonstrated equivalent 
+          cooling performance to the series unit 
+          at less than half the roof footprint
+        </li>
+        <li>
+          Result validated years of MAHLE prototype 
+          development to senior management
+        </li>
+        <li>
+          Validated 1D simulation model delivered 
+          for ongoing control strategy development
+        </li>
+        <li>
+          Retrofit campaign completed on time 
+          despite 2.5-week window
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Tools & Skills</h2>
+      <div class="tags">
+        <span>BISS (MAHLE internal)</span>
+        <span>IMC Studio</span>
+        <span>SCADAS DAQ</span>
+        <span>Thermodynamics / Refrigeration cycles</span>
+        <span>Experimental design (DoE)</span>
+        <span>1D system simulation</span>
+        <span>Project coordination</span>
+        <span>Excel / MATLAB</span>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="project-bottom-nav">
+    <a href="ktl.html">
+      <div class="nav-card-text">
+        <span class="nav-direction">← Previous</span>
+        <span class="nav-title">KTL Simulation</span>
+      </div>
+      <img class="nav-card-img" src="../media/KTL asdv.png" alt="KTL Simulation">
+    </a>
+    <a href="nvh.html" class="nav-next">
+      <img class="nav-card-img" src="../media/Test Bench CAD.jpg" alt="NVH Test Bench">
+      <div class="nav-card-text">
+        <span class="nav-direction">Next →</span>
+        <span class="nav-title">NVH Test Bench</span>
+      </div>
+    </a>
+  </div>
+
+</body>
+</html>

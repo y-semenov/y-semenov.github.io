@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KTL Simulation – Yaroslav Semenov</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <nav class="project-detail-nav">
+    <a href="../index.html" class="nav-logo">YS</a>
+    <a href="../index.html#projects">← All Projects</a>
+  </nav>
+
+  <header class="project-header">
+    <p class="project-tag">MAHLE · Internship · Apr – Aug 2021</p>
+    <h1>FEM Simulation of KTL Coating on Industrial Heat Exchangers</h1>
+    <p class="project-subtitle">
+      Developed a parametric electrochemical FEM model in COMSOL 
+      Multiphysics that reproduced real coating defects and provided 
+      the team with a virtual laboratory — replacing costly 
+      trial-and-error experiments.
+    </p>
+  </header>
+
+  <div class="project-hero">
+    <video id="hero-video" autoplay loop muted>
+      <source src="../media/KTL Preview cropped.mp4" type="video/mp4">
+    </video>
+    <p class="caption">
+      COMSOL model simulating KTL lacquer deposition over time —
+      colour scale shows coating thickness (μm) across the imported part geometry
+    </p>
+  </div>
+
+  <main class="project-content">
+
+    <section>
+      <h2>Background</h2>
+      <p>
+        MAHLE produces large aluminum heat exchangers for railway 
+        roof-mounted cooling systems. These operate in harsh 
+        environments — extreme temperature swings, humidity, 
+        UV exposure — making corrosion protection critical.
+      </p>
+      <p>
+        The established epoxy coating method was being replaced by 
+        KTL (cathodic dip coating, <em>kathodische Tauchlackierung</em>), 
+        which offers significantly better corrosion resistance and 
+        is standard in automotive body production. However, applying 
+        it to heat exchangers proved far more difficult: the 
+        lacquer coated outer surfaces well but left an 
+        uncoated ellipsoidal zone deep inside the fin structure.
+      </p>
+    </section>
+
+    <section>
+      <h2>The Problem</h2>
+      <p>
+        The team had been running physical experiments for months — 
+        varying voltage profiles, bath geometry, and anode 
+        placement — without a systematic understanding of why 
+        the coating was uneven. Each trial cost approximately 
+        €2,000 and took weeks to coordinate with external contractors.
+      </p>
+      <p>
+        One engineer had previously attempted a simulation in 
+        COMSOL Multiphysics but stopped after six months 
+        without convincing results.
+      </p>
+    </section>
+
+    <figure>
+      <img src="../media/Uncoated heat exchanger.jpg" alt="Cross-section of coated heat exchanger"> 
+      <figcaption>
+        Physical cross-section revealing the ellipsoidal 
+        uncoated zone — the core problem this project addressed
+      </figcaption>
+    </figure>
+
+    <section>
+      <h2>My Approach</h2>
+      <p>
+        Despite initial skepticism from my supervisor, 
+        I invested several weekends self-teaching COMSOL 
+        Multiphysics and built a first proof-of-concept model.
+      </p>
+
+      <figure>
+      <img src="../media/KTL simulation full heat exchanger new.jpg" alt="Simulation Model">
+      <figcaption>
+        Simulated coating thickness (colour) overlaid with electrolyte current density streamlines.
+      </figcaption>
+    </figure>
+
+      <p>
+        The model combined several components:
+      </p>
+      <ul>
+        <li>
+          Parametric 3D geometry of the heat exchanger 
+          built in Autodesk Inventor — fin density, 
+          dimensions and geometry all adjustable
+        </li>
+        <li>
+          KTL bath geometry with configurable anode 
+          placement, bath dimensions and heat exchanger position
+        </li>
+        <li>
+          Iterative deposition model — at each step, 
+          the program computed electric field distribution, 
+          determined current density at the exchanger surface, 
+          deposited a lacquer layer proportional to 
+          local current density, then re-computed the 
+          field with the now-insulating deposited layer
+        </li>
+        <li>
+          Electrical conductivity of both liquid lacquer 
+          and deposited lacquer as tunable parameters
+        </li>
+      </ul>
+      <p>
+        The proof-of-concept immediately reproduced the 
+        ellipsoidal uncoated zone — validating the model 
+        against physical cross-sections.
+      </p>
+    </section>
+
+    <figure>
+      <img src="../media/KTL comparison.jpg" alt="Simulation vs experiment comparison"
+        style="border-radius: 0;">
+      <figcaption>
+        Simulated coating distribution (left) closely matches 
+        the experimental cross-section (right)
+      </figcaption>
+    </figure>
+
+    <section>
+      <h2>Simulation-Driven Process Optimisation</h2>
+      <p>
+        A validated model transformed the way I could explore the process.
+        Instead of expensive physical trials, I could run dozens
+        of virtual experiments in hours — quantitatively studying how voltage,
+        bath size, immersion time, part orientation, and other parameters
+        affect coated area percentage, final layer thickness, and deposition rate.
+        This iterative exploration allowed me to built a deep intuitive understanding
+        of the underlying physics and generate mulitple ideas to eliminate the uncoated zone.
+      </p>
+      <p>
+        I tested these ideas in simulation — fast, risk-free, and requiring no
+        material or workshop time. The optimised parameter set achieved
+        23% higher deposition efficiency compared to the standard
+        methodology, and the simulations confirmed the elimination of the
+        ellipsoidal uncoated zone. This opened a new phase of the project with a
+        clear, simulation-backed path to full coating coverage.
+      </p>
+
+      <figure>
+        <img src="../media/Coating improvements.jpg" alt="Coating improvements">
+        <figcaption>
+          Coated area percentage vs. deposition time: the optimised methodology (blue)
+          reaches full coverage, while the original parameters (grey) only reaches 79%,
+          leaving the characteristic uncoated zone visible in simulation.
+        </figcaption>
+      </figure>
+
+    </section>
+
+    <section>
+      <h2>Additional Finding: Buoyancy Experiment</h2>
+      <p>
+        Many contractors had been dismissed because they 
+        could not fix the heat exchangers to the bath floor — 
+        a requirement assumed necessary to prevent them 
+        from floating. I questioned whether the largest 
+        exchangers would actually float, given their heavy 
+        aluminium frame.
+      </p>
+      <p>
+        I organised a physical experiment using the workshop 
+        crane: a ~500 kg sample was submerged in a water tank 
+        with an industrial load cell measuring apparent weight. 
+        The result: the largest exchangers generated 
+        <em>no net buoyancy</em> — making the floor-fixing 
+        requirement unnecessary and reopening access to 
+        several previously rejected contractors.
+      </p>
+
+    <figure>
+      <img src="../media/Buyoyancy Experiment.png" alt="Buyoyancy"> 
+      <figcaption>
+        Buoyancy experiment confirms that the heat exchanger
+        sinks under its own weight, eliminating the need for
+        submersion fixtures assumed in earlier process designs
+      </figcaption>
+    </figure>
+
+    </section>
+
+    <section>
+      <h2>Results</h2>
+      <ul>
+        <li>
+          Model validated against physical experiments — 
+          ellipsoidal uncoated zone reproduced accurately
+        </li>
+        <li>
+          Paradigm shift from blind trial-and-error to 
+          simulation-guided experimentation
+        </li>
+        <li>
+          MAHLE purchased a full COMSOL Multiphysics 
+          license based on the results
+        </li>
+        <li>
+          I trained the remaining team members 
+          and documented the methodology before 
+          completing the internship
+        </li>
+        <li>
+          Buoyancy assumption experimentally disproved —
+          contractor pool expanded
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Tools & Skills</h2>
+      <div class="tags">
+        <span>COMSOL Multiphysics</span>
+        <span>Electrochemical FEM simulation</span>
+        <span>Autodesk Inventor</span>
+        <span>Parametric 3D modelling</span>
+        <span>Excel (data analysis)</span>
+        <span>Experimental design</span>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="project-bottom-nav">
+    <a href="roboter.html">
+      <div class="nav-card-text">
+        <span class="nav-direction">← Previous</span>
+        <span class="nav-title">Balancing Robot</span>
+      </div>
+      <img class="nav-card-img" src="../media/Robot preview static.jpg" alt="Self-Balancing Robot">
+    </a>
+    <a href="bus.html" class="nav-next">
+      <img class="nav-card-img" src="../media/bus climate chamber.jpg" alt="Bus A/C Prototype Validation">
+      <div class="nav-card-text">
+        <span class="nav-direction">Next →</span>
+        <span class="nav-title">Bus A/C Prototype</span>
+      </div>
+    </a>
+  </div>
+
+  <script>
+    const video = document.getElementById('hero-video');
+    video.addEventListener('mouseenter', () => video.setAttribute('controls', ''));
+    video.addEventListener('mouseleave', () => video.removeAttribute('controls'));
+  </script>
+
+</body>
+</html>

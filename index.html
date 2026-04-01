@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yaroslav Semenov – Mechanical Engineer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ========== NAVIGATION ========== -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">YS</a>
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-tag">Mechanical Engineer · Munich</p>
+      <h1 class="hero-title">
+        Yaroslav<br>Semenov
+      </h1>
+      <p class="hero-description">
+        M.Sc. Automotive Engineering from TU Munich. 
+        Experience in simulation, NVH, thermal management 
+        and battery safety at MAHLE and BMW.
+        I turn complex engineering problems into 
+        measurable results.
+      </p>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+      </div>
+    </div>
+    <div class="hero-image-placeholder">
+      <img src="media/portrait.jpg" alt="Yaroslav Semenov">
+    </div>
+  </section>
+
+  <!-- ========== PROJECTS ========== -->
+  <section id="projects" class="section">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-subtitle">
+        A selection of engineering work from internships 
+        and thesis projects at MAHLE and BMW.
+      </p>
+
+      <div class="projects-grid">
+
+        <!-- Project 1 -->
+        <a href="projects/ktl.html" class="project-card">
+          <div class="project-card-image">
+            <video loop muted playsinline poster="media/KTL asdv.png">
+              <source src="media/KTL Preview.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="project-card-body">
+            <p class="project-card-tag">MAHLE · 2021</p>
+            <h3>FEM Simulation of KTL Coating</h3>
+            <p>
+              Built a parametric COMSOL model that reproduced 
+              real coating defects in railway heat exchangers — 
+              enabling virtual process optimization.
+            </p>
+            <span class="project-card-link">View project →</span>
+          </div>
+        </a>
+
+        <!-- Project 2 -->
+        <a href="projects/bus.html" class="project-card">
+          <div class="project-card-image">
+            <img src="media/bus climate chamber.jpg" alt="Bus / Climate Chamber">
+          </div>
+          <div class="project-card-body">
+            <p class="project-card-tag">MAHLE · 2021–2022</p>
+            <h3>Bus A/C Prototype Validation</h3>
+            <p>
+              Instrumented a full-size bus with 100+ sensors, 
+              transplanted a compact A/C prototype, and validated 
+              it in a climate chamber. Bachelor's thesis.
+            </p>
+            <span class="project-card-link">View project →</span>
+          </div>
+        </a>
+
+        <!-- Project 3 -->
+        <a href="projects/nvh.html" class="project-card">
+          <div class="project-card-image">
+            <img src="media/Test Bench CAD.jpg" alt="Test Bench CAD">
+          </div>
+          <div class="project-card-body">
+            <p class="project-card-tag">BMW · 2023–2024</p>
+            <h3>NVH Test Bench for Refrigerant Hoses</h3>
+            <p>
+              Designed a third-generation inertial test bench 
+              achieving 8500 Hz first resonance — 3× better than 
+              the previous concept. 500+ experiments conducted.
+            </p>
+            <span class="project-card-link">View project →</span>
+          </div>
+        </a>
+
+        <!-- Project 4 -->
+        <a href="projects/battery.html" class="project-card">
+          <div class="project-card-image">
+            <img src="media/Battery Preview.jpg" alt="Battery Model">
+          </div>
+          <div class="project-card-body">
+            <p class="project-card-tag">BMW · 2024–2025</p>
+            <h3>Li-Ion Battery Safety – Internal Short Circuits</h3>
+            <p>
+              Simulated thermal propagation from manufacturing 
+              defects in Li-Ion cells to determine critical heat 
+              thresholds for on-board diagnostics. Master's thesis.
+            </p>
+            <span class="project-card-link">View project →</span>
+          </div>
+        </a>
+
+        <!-- Project 5 -->
+        <a href="projects/roboter.html" class="project-card">
+          <div class="project-card-image">
+            <video loop muted playsinline poster="media/Robot preview static.jpg">
+              <source src="media/Robot video.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="project-card-body">
+            <p class="project-card-tag">
+              Ruhr-Universität Bochum · 2020
+            </p>
+            <h3>Self-Balancing Robot</h3>
+            <p>
+              Built and programmed a Segway-style robot 
+              from scratch — fixed a bug in the official 
+              reference code to achieve stable balance 
+              and Bluetooth control.
+            </p>
+            <span class="project-card-link">View project →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SKILLS ========== -->
+  <section id="skills" class="section section-alt">
+    <div class="container">
+      <h2 class="section-title">Skills</h2>
+
+      <div class="skills-grid">
+
+        <div class="skill-group">
+          <h3>Simulation & Analysis</h3>
+          <ul>
+            <li>COMSOL Multiphysics</li>
+            <li>Star-CCM+</li>
+            <li>Simcenter 3D / Nastran</li>
+            <li>Simcenter LMS Test.Lab</li>
+            <li>MATLAB / Simulink</li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <h3>CAD & Design</h3>
+          <ul>
+            <li>CATIA V5</li>
+            <li>Autodesk Inventor</li>
+            <li>SolidWorks (CSWA certified, 240/240)</li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <h3>Engineering Domains</h3>
+          <ul>
+            <li>NVH / Structural Dynamics</li>
+            <li>Thermal Management</li>
+            <li>Battery Safety (Li-Ion)</li>
+            <li>KTL Coating Processes</li>
+            <li>HVAC / Refrigeration Cycles</li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <h3>Tools & Other</h3>
+          <ul>
+            <li>Excel (advanced modelling)</li>
+            <li>Python (basics)</li>
+            <li>IMC Studio / SCADAS</li>
+            <li>Citavi</li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <h3>Languages</h3>
+          <ul>
+            <li>German — fluent</li>
+            <li>English — fluent</li>
+            <li>Ukrainian — native</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== EDUCATION ========== -->
+  <section id="education" class="section">
+    <div class="container">
+      <h2 class="section-title">Education</h2>
+
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-date">2022 – 2025</div>
+          <div class="timeline-body">
+            <h3>M.Sc. Automotive Engineering</h3>
+            <p class="timeline-place">
+              Technische Universität München
+            </p>
+            <p>
+              Admission rate: 8% of applicants.
+              Focus on vehicle dynamics, electric powertrains, 
+              NVH and battery systems. 
+              Final grade: 2.3.
+            </p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">2017 – 2022</div>
+          <div class="timeline-body">
+            <h3>B.Sc. Mechanical Engineering</h3>
+            <p class="timeline-place">
+              Ruhr-Universität Bochum
+            </p>
+            <p>
+              210 ECTS. Final grade: 1.8 (top 10% of cohort).<br>
+              Four scholarships including two Deutschlandstipendium awards.<br>
+              Highest score in Higher Mathematics among 500 students – grade 0.7
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT ========== -->
+  <section id="contact" class="section section-alt">
+    <div class="container contact-container">
+      <h2 class="section-title">Get in Touch</h2>
+      <p class="section-subtitle">
+        I am currently looking for engineering positions in Germany. 
+        Feel free to reach out.
+      </p>
+
+      <div class="contact-links">
+        <a href="mailto:y.semenov.contact@gmail.com" 
+           class="contact-item">
+          <span class="contact-icon">✉</span>
+          <span>y.semenov.contact@gmail.com</span>
+        </a>
+        <a href="https://linkedin.com/in/y-semenov" 
+           class="contact-item" 
+           target="_blank">
+          <span class="contact-icon">in</span>
+          <span>linkedin.com/in/y-semenov</span>
+        </a>
+        <div class="contact-item">
+          <span class="contact-icon">☎</span>
+          <span>+49 152 59922724</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    document.querySelectorAll('.project-card-image video').forEach(video => {
+      const card = video.closest('.project-card');
+      card.addEventListener('mouseenter', () => video.play());
+      card.addEventListener('mouseleave', () => { video.pause(); });
+    });
+  </script>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <p>© 2026 Yaroslav Semenov</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NVH Test Bench – Yaroslav Semenov</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+  <nav class="project-detail-nav">
+    <a href="../index.html" class="nav-logo">YS</a>
+    <a href="../index.html#projects">← All Projects</a>
+  </nav>
+
+  <header class="project-header">
+    <p class="project-tag">
+      BMW · Working Student · Apr 2023 – Mar 2024
+    </p>
+    <h1>NVH Test Bench for Refrigerant Hose Characterisation</h1>
+    <p class="project-subtitle">
+      Designed a third-generation inertial measurement bench 
+      achieving a first resonance of 8,500 Hz — 3× better than 
+      the previous concept — enabling accurate characterisation 
+      of dynamic stiffness in composite refrigerant hoses 
+      for BMW's Neue Klasse electric vehicle platform.
+    </p>
+  </header>
+
+  <div class="project-hero">
+    <img src="../media/Test Bench CAD.jpg" 
+      alt="Test bench in BMW laboratory">
+    <p class="caption">
+      Third-generation inertial test bench — 
+      designed entirely in CATIA, manufactured 
+      in the BMW workshop
+    </p>
+  </div>
+
+  <main class="project-content">
+
+    <section>
+      <h2>Background</h2>
+      <p>
+        In electric vehicles, the absence of internal 
+        combustion engine noise makes previously 
+        masked sounds clearly audible. Among these, 
+        vibrations from the A/C compressor transmitted 
+        through refrigerant hoses and rubber mounts 
+        into the cabin are a significant NVH challenge.
+      </p>
+      <figure>
+        <img src="../media/Car scheme.jpg" alt="Car scheme">
+        <figcaption>
+          Vibration transmission path in an electric vehicle — compressor excitation travels through rubber mounts and refrigerant hoses directly into the passenger cabin
+        </figcaption>
+      </figure>
+      <p>
+        To optimize the packaging and design of these interface components
+        (refrigerant hoses, rubber mounts), our vehicle integration strategy
+        relied on predictive FEM simulations. However, these simulations were
+        unreliable because they lacked accurate input data for the
+        frequency-dependent dynamic stiffness of the components across
+        four degrees of freedom: tension/compression, shear, torsion, and bending:
+      </p>
+      <figure>
+        <div class="figure-four-col">
+          <img src="../media/DoF ZugDruck.gif" alt="Tension/Compression degree of freedom">
+          <img src="../media/DoF Schub.gif" alt="Shear degree of freedom">
+          <img src="../media/DoF Torsion.gif" alt="Torsion degree of freedom">
+          <img src="../media/DoF Biegung.gif" alt="Bending degree of freedom">
+        </div>
+        <figcaption>
+          Four degrees of freedom characterised: longitudinal, shear, torsion, and bending —
+          visualised using Direct Frequency Response simulations I built in Simcenter 3D (Nastran)
+        </figcaption>
+      </figure>
+      <p>
+        The problem was that no suitable measurement method existed. Standard test machines —
+        designed for stiffer engine mounts — operated at the wrong force
+        amplitudes and frequency ranges for the soft composite hoses in
+        question (PTFE core, elastomer braid, textile sleeve).
+        They also lacked the ability to measure rotational degrees of freedom,
+        capturing only translational stiffness. The team had begun developing
+        a dedicated test bench from scratch, and I joined the project at the prototype stage.
+      </p>
+    </section>
+
+    <section>
+      <h2>Methodology</h2>
+      <p>
+        The test bench uses an inertial measurement principle. A hose specimen is mounted between two metal parts: an outer active part driven by two electrodynamic shakers, and an inner passive part that floats freely. Accelerometers on both parts capture their motion; double integration of the signals yields displacement, and their difference gives the specimen deformation. Since the passive part is free-floating, the force through the hose is simply its mass multiplied by the measured acceleration — no multi-axis load cells required.
+      </p>
+      <p>
+        The symmetrical design enables all four loading modes through simple reconfiguration. When both shakers move in phase, the specimen sees pure tension/compression; reversing one shaker's phase produces bending. Rotating the rig 90° and repeating these two configurations yields torsion and shear. Center-of-gravity alignment along the hose axis eliminates cross-coupling, ensuring each mode is excited in isolation.
+      </p>
+      <figure class="tab-figure">
+        <div class="tab-buttons">
+          <button class="tab-btn active" data-tab="tension">Longitudinal</button>
+          <button class="tab-btn" data-tab="bending">Bending</button>
+          <button class="tab-btn" data-tab="torsion">Torsion</button>
+          <button class="tab-btn" data-tab="shear">Shear</button>
+        </div>
+        <img class="tab-panel active" data-tab="tension" src="../media/Test Bench Tension.gif" alt="Tension/Compression test setup">
+        <img class="tab-panel" data-tab="bending" src="../media/Test Bench Bending.gif" alt="Bending test setup">
+        <img class="tab-panel" data-tab="torsion" src="../media/Test Bench Torsion.gif" alt="Torsion test setup">
+        <img class="tab-panel" data-tab="shear" src="../media/Test Bench Shear.gif" alt="Shear test setup">
+        <figcaption>
+          Extremely simplified model of the previous test rig generation that I build and simulated in 
+          Simcenter 3D purely to demonstrate the measurement principle — 
+          select a tab to see each degree of freedom configuration.
+        </figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>The Problem</h2>
+      <p>
+        The first-generation test bench worked as a proof of concept,
+        but with a critical limitation. At lower frequencies the measured
+        dynamic stiffness matched theoretical expectations,
+        but beyond roughly 300–400 Hz the values skyrocketed
+        exponentially — behaviour that does not reflect real elastomer physics.
+        Feeding these artificially inflated results into the simulation
+        would mean garbage in, garbage out: over-engineered mounts
+        and hose geometries designed to solve problems
+        that don't actually exist in the vehicle.
+      </p>
+      <figure>
+        <img src="../media/NVH Expected vs measured result new.jpg" alt="Expected vs measured result">
+        <figcaption>
+          Dynamic stiffness measured by the previous generation test bench (red) diverges exponentially from real elastomer behaviour (dashed) above 300 Hz
+        </figcaption>
+      </figure>
+      <p>
+        The root cause was structural resonance of the rig itself.
+        The measurement principle assumes both metal parts behave as rigid bodies,
+        and at low frequencies they do. But as the excitation frequency increases,
+        the shakers begin exciting the natural modes of the fixture's structural members,
+        introducing parasitic deformation into the force path and corrupting
+        the stiffness calculation.
+      </p>
+      <figure>
+        <img src="../media/Resonance animation.gif" alt="Expected vs measured result"
+          style="width: 85%; margin: 0 auto;">
+        <figcaption>
+          At higher frequencies, the fixture's own structural members begin to resonate — introducing parasitic deformation into the force path and corrupting the stiffness calculation. Simulated in Simcenter 3D.
+        </figcaption>
+      </figure>
+    </section>
+
+    <section>
+      <h2>Design Objective</h2>
+      <p>
+        Given these findings, the goal for the next-generation test bench
+        was clear: achieve exceptional structural rigidity, pushing the
+        first natural frequency well above the 1,000 Hz operational range to ensure
+        that the rig's own resonances would not interfere with the measurements.
+      </p>
+    </section>
+
+    <section>
+      <h2>My Contribution</h2>
+      <p>
+        Within the first months I learned the 
+        inertial measurement principle, CATIA, 
+        and Simcenter LMS Test.Lab — all from 
+        brief introductions followed by 
+        independent practice.
+      </p>
+      <p>
+        When my supervisor's Gen-3 design concept 
+        reached 3,000–3,300 Hz first resonance 
+        (verified in Simcenter 3D / Nastran), 
+        he concluded it was near-optimal. 
+        I disagreed — and over five personal 
+        weekend days developed an independent concept.
+      </p>
+      <p>
+        My design achieved <strong>7,500 Hz</strong> 
+        first resonance in simulation — later refined 
+        collaboratively to <strong>8,500 Hz</strong>. 
+        The concept was manufactured and became 
+        the production bench.
+      </p>
+    </section>
+
+    <figure>
+      <img src="../media/My contribution diagram.svg" alt="Resonance frequency comparison chart">
+      <figcaption>
+        First resonance frequency across three test bench generations — my redesign (blue) raised it from 3,300 to 8,500 Hz
+      </figcaption>
+    </figure>
+
+    <section>
+      <h2>Scope of Work</h2>
+      <ul>
+        <li>
+          Full CATIA design of 20+ machined parts 
+          across multiple test fixtures — 
+          from concept to workshop-ready models 
+          including tolerances, thread specifications 
+          and material selection (aluminium, steel, POM)
+        </li>
+        <li>
+          Modal analysis and Direct Frequency Response 
+          studies in Simcenter 3D (Nastran solver) 
+          for iterative design validation
+        </li>
+        <li>
+          500+ laboratory experiments measuring 
+          dynamische Steifigkeit of hose specimens 
+          using Simcenter LMS Test.Lab 
+          and SCADAS hardware
+        </li>
+        <li>
+          Data post-processing pipeline: 
+          LMS Test.Lab → MATLAB → custom Excel tool 
+          (co-developed with supervisor)
+        </li>
+        <li>
+          Parallel development of equivalent 
+          test bench for compressor rubber mounts 
+          (2 DOF: compression and shear)
+        </li>
+        <li>
+          Comprehensive methodology documentation 
+          enabling team continuity after project handover
+        </li>
+      </ul>
+    </section>
+
+    <figure>
+      <img src="../media/nvh messung.jpg" alt="NVH Messung">
+      <figcaption>
+        Bode plot of dynamic torsional stiffness for three refrigerant hose specimens,
+        measured from 10 to 1000 Hz with Simcenter LMS Test.Lab.
+        Dynamic torsional stiffness magnitude on top and loss angle on the bottom —
+        stable, repeatable curves confirm measurement quality
+      </figcaption>
+    </figure>
+
+    <section>
+      <h2>Results & Impact</h2>
+      <ul>
+        <li>
+          Test bench with 8,500 Hz first resonance — 
+          3× improvement over previous concept, 
+          significantly expanding usable 
+          measurement bandwidth
+        </li>
+        <li>
+          Complete hose and rubber mount 
+          characterisation database delivered — 
+          direct input to NVH simulation models
+        </li>
+        <li>
+          Methodology and tooling adopted by 
+          colleagues after project handover; 
+          results feed into BMW Neue Klasse 
+          development
+        </li>
+        <li>
+          Workshop staff surprised to learn 
+          the designs came from a student — 
+          "these look like a senior engineer's work"
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Tools & Skills</h2>
+      <div class="tags">
+        <span>CATIA V5</span>
+        <span>Simcenter 3D / Nastran</span>
+        <span>Simcenter LMS Test.Lab</span>
+        <span>SCADAS DAQ</span>
+        <span>MATLAB</span>
+        <span>NVH / Structural Dynamics</span>
+        <span>Modal Analysis</span>
+        <span>Dynamic Stiffness Measurement</span>
+        <span>Excel (advanced)</span>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="project-bottom-nav">
+    <a href="bus.html">
+      <div class="nav-card-text">
+        <span class="nav-direction">← Previous</span>
+        <span class="nav-title">Bus A/C Prototype</span>
+      </div>
+      <img class="nav-card-img" src="../media/bus climate chamber.jpg" alt="Bus A/C Validation">
+    </a>
+    <a href="battery.html" class="nav-next">
+      <img class="nav-card-img" src="../media/Battery Preview.jpg" alt="Battery Safety">
+      <div class="nav-card-text">
+        <span class="nav-direction">Next →</span>
+        <span class="nav-title">Battery Safety</span>
+      </div>
+    </a>
+  </div>
+
+
+<script>
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const figure = btn.closest('.tab-figure');
+      const tab = btn.dataset.tab;
+      figure.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b === btn));
+      figure.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.dataset.tab === tab));
+    });
+  });
+</script>
+</body>
+</html>
