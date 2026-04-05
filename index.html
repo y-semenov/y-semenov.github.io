@@ -92,6 +92,28 @@
     video.addEventListener('mouseenter', () => video.setAttribute('controls', ''));
     video.addEventListener('mouseleave', () => video.removeAttribute('controls'));
 
+    // ── Пауза/відновлення при скролінгу ─────────────────────
+    let userPaused = false;
+    let observerPausing = false;
+
+    video.addEventListener('pause', () => {
+      if (!observerPausing) userPaused = true;
+      observerPausing = false;
+    });
+    video.addEventListener('play', () => { userPaused = false; });
+
+    new IntersectionObserver(
+      entries => {
+        if (entries[0].isIntersecting) {
+          if (!userPaused) video.play();
+        } else {
+          observerPausing = true;
+          video.pause();
+        }
+      },
+      { threshold: 0.9 }
+    ).observe(video);
+
     // ── HUD: перемикач субтитрів ────────────────────────────
     document.querySelectorAll('.video-hud-lang').forEach(btn => {
       btn.addEventListener('click', () => {
