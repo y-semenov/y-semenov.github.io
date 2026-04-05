@@ -29,8 +29,7 @@
         preload="metadata"
         muted
         autoplay
-        playsinline
-        controls>
+        playsinline>
         <source src="media/VideoPitch.webm" type="video/webm">
       </video>
     </div>
@@ -82,6 +81,10 @@
         enableSubtitles, { once: true });
     }
 
+    // ── Контроли hero-відео при hover ───────────────────────
+    video.addEventListener('mouseenter', () => video.setAttribute('controls', ''));
+    video.addEventListener('mouseleave', () => video.removeAttribute('controls'));
+
     // ── Відео карток проектів ───────────────────────────────
     document.querySelectorAll('.project-card-image video')
       .forEach(v => {
@@ -94,7 +97,7 @@
   </script>
 
   <!-- ========== PROJECTS ========== -->
-  <section id="projects" class="section">
+  <section id="projects" class="section section-alt">
     <div class="container">
       <h2 class="section-title">Projects</h2>
       <p class="section-subtitle">

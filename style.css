@@ -130,33 +130,39 @@ img {
    HERO
    ========================================= */
 .hero {
-  /* Секція від лівого до правого краю контейнера,
-     але не до країв екрану */
   max-width: 1100px;
   margin: 0 auto;
   padding: 40px 40px 64px;
+  height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
 }
 
 .hero-video-wrap {
   position: relative;
-  width: 100%;
+  flex: 1;
+  min-height: 0;
   border-radius: 16px;
   overflow: hidden;
-  background: #111;  
+  background: #111;
+}
+
+/* Subtitle styling */
+::cue {
+  background-color: transparent;
+  color: #ffffff;
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.9),
+    0 0 10px rgba(0, 0, 0, 0.6);
+  font-size: 88%;
 }
 
 /* Саме відео */
 .hero-video-player {
   display: block;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: 100%;
   object-fit: cover;
-
-  /* Браузерні контроли приховані в спокої,
-     з'являються при hover через opacity на
-     вбудований shadow-DOM браузера.
-     Ми не можемо стилізувати їх напряму,
-     але можемо керувати видимістю самого відео-елементу */
 }
 
 .hero-below {
