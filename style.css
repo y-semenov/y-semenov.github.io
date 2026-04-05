@@ -130,88 +130,183 @@ img {
    HERO
    ========================================= */
 .hero {
-  min-height: calc(100vh - 60px);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 48px;
-  padding: 80px 40px;
+  /* Секція від лівого до правого краю контейнера,
+     але не до країв екрану */
   max-width: 1100px;
   margin: 0 auto;
+  padding: 40px 40px 64px;
 }
 
-.hero-content {
-  max-width: 560px;
+.hero-video-wrap {
+  position: relative;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #111;  
 }
 
-.hero-image-placeholder img {
+/* Саме відео */
+.hero-video-player {
   display: block;
-  margin-left: auto;
-  border-radius: 12px;
-  max-height: 512px;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+
+  /* Браузерні контроли приховані в спокої,
+     з'являються при hover через opacity на
+     вбудований shadow-DOM браузера.
+     Ми не можемо стилізувати їх напряму,
+     але можемо керувати видимістю самого відео-елементу */
 }
 
-.hero-tag {
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: #767676;
-  margin-bottom: 16px;
+/* Градієнт знизу відео */
+.hero-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  /* Градієнт: прозорий зверху → темний знизу */
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.15) 40%,
+    rgba(0, 0, 0, 0.72) 100%
+  );
+
+  padding: 80px 36px 28px;
+
+  /* Overlay не перехоплює кліки на відео —
+     користувач може натиснути на нижню частину
+     відео і все одно отримати контроли */
+  pointer-events: none;
+}
+
+.hero-overlay-inner {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+
+  /* Повертаємо pointer-events для кнопок */
+  pointer-events: auto;
+}
+
+.hero-identity {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .hero-title {
-  font-size: clamp(3rem, 6vw, 5rem);
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
   font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-  margin-bottom: 24px;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+
+  /* Тонь під текстом для читабельності
+     на будь-якому кадрі відео */
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
 }
 
-.hero-description {
-  font-size: 1.1rem;
-  color: #444;
-  line-height: 1.7;
-  margin-bottom: 36px;
-  max-width: 480px;
+.hero-tag {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.75);
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
 }
 
 .hero-buttons {
   display: flex;
-  gap: 16px;
+  gap: 12px;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 /* =========================================
    BUTTONS
    ========================================= */
+
 .btn {
   display: inline-block;
-  padding: 12px 28px;
+  padding: 11px 26px;
   border-radius: 6px;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   font-weight: 600;
   transition: all 0.2s;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .btn-primary {
-  background: #1a1a1a;
-  color: #ffffff;
+  background: #ffffff;
+  color: #1a1a1a;
 }
 
 .btn-primary:hover {
-  background: #333;
+  background: #f0f0f0;
 }
 
-.btn-secondary {
+/* Кнопка на темному тлі — прозора з білою рамкою */
+.btn-outline-light {
   background: transparent;
-  color: #1a1a1a;
-  border: 2px solid #1a1a1a;
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.7);
 }
 
-.btn-secondary:hover {
-  background: #1a1a1a;
-  color: #ffffff;
+.btn-outline-light:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: #ffffff;
+}
+
+/* =========================================
+   RESPONSIVE — Hero
+   ========================================= */
+
+@media (max-width: 900px) {
+  .hero {
+    padding: 24px 24px 48px;
+  }
+
+  .hero-video-wrap {
+    border-radius: 12px;
+  }
+
+  .hero-overlay {
+    padding: 60px 20px 20px;
+  }
+
+  .hero-overlay-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 16px 16px 40px;
+  }
+
+  .hero-overlay {
+    padding: 40px 16px 16px;
+  }
+
+  .hero-title {
+    font-size: 1.3rem;
+  }
+
+  .hero-tag {
+    font-size: 0.72rem;
+  }
+
+  .btn {
+    padding: 9px 18px;
+    font-size: 0.85rem;
+  }
 }
 
 /* =========================================

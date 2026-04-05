@@ -21,27 +21,84 @@
 
   <!-- ========== HERO ========== -->
   <section class="hero">
-    <div class="hero-content">
-      <p class="hero-tag">Mechanical Engineer · Munich</p>
-      <h1 class="hero-title">
-        Yaroslav<br>Semenov
-      </h1>
-      <p class="hero-description">
-        M.Sc. Automotive Engineering from TU Munich. 
-        Experience in simulation, NVH, thermal management 
-        and battery safety at MAHLE and BMW.
-        I turn complex engineering problems into 
-        measurable results.
-      </p>
-      <div class="hero-buttons">
-        <a href="#projects" class="btn btn-primary">View Projects</a>
-        <a href="#contact" class="btn btn-secondary">Get in Touch</a>
+    <div class="hero-video-wrap">
+
+      <video
+        id="hero-video"
+        class="hero-video-player"
+        poster="media/VideoPitchStatic.jpg"
+        preload="metadata"
+        muted
+        autoplay
+        playsinline
+        controls>
+        <source src="media/VideoPitch.webm" type="video/webm">
+      </video>
+
+      <div class="hero-overlay">
+        <div class="hero-overlay-inner">
+          <div class="hero-identity">
+            <h1 class="hero-title">Yaroslav Semenov</h1>
+            <p class="hero-tag">Mechanical Engineer · Munich</p>
+          </div>
+          <div class="hero-buttons">
+            <a href="#projects" class="btn btn-primary">
+              View Projects
+            </a>
+            <a href="#contact" class="btn btn-outline-light">
+              Get in Touch
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="hero-image-placeholder">
-      <img src="media/portrait.jpg" alt="Yaroslav Semenov">
+
     </div>
   </section>
+
+  <script>
+  (function () {
+
+    // ── Субтитри ────────────────────────────────────────────
+    const video = document.getElementById('hero-video');
+
+    function addTrack(src, lang, label, isDefault) {
+      const t = document.createElement('track');
+      t.kind    = 'subtitles';
+      t.src     = src;
+      t.srclang = lang;
+      t.label   = label;
+      if (isDefault) t.default = true;
+      video.appendChild(t);
+    }
+
+    addTrack('media/DE captions.vtt', 'de', 'Deutsch',  true);
+    addTrack('media/EN caption.vtt',  'en', 'English',  false);
+
+    // Вмикаємо DE субтитри після завантаження метаданих
+    function enableSubtitles() {
+      for (let i = 0; i < video.textTracks.length; i++) {
+        const tt = video.textTracks[i];
+        tt.mode = (tt.language === 'de') ? 'showing' : 'hidden';
+      }
+    }
+
+    if (video.readyState >= 1) {
+      enableSubtitles();
+    } else {
+      video.addEventListener('loadedmetadata',
+        enableSubtitles, { once: true });
+    }
+
+    // ── Відео карток проектів ───────────────────────────────
+    document.querySelectorAll('.project-card-image video')
+      .forEach(v => {
+        const card = v.closest('.project-card');
+        card.addEventListener('mouseenter', () => v.play());
+        card.addEventListener('mouseleave', () => v.pause());
+      });
+
+  })();
+  </script>
 
   <!-- ========== PROJECTS ========== -->
   <section id="projects" class="section">
