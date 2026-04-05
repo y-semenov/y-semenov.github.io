@@ -22,7 +22,6 @@
   <!-- ========== HERO ========== -->
   <section class="hero">
     <div class="hero-video-wrap">
-
       <video
         id="hero-video"
         class="hero-video-player"
@@ -34,25 +33,19 @@
         controls>
         <source src="media/VideoPitch.webm" type="video/webm">
       </video>
-
-      <div class="hero-overlay">
-        <div class="hero-overlay-inner">
-          <div class="hero-identity">
-            <h1 class="hero-title">Yaroslav Semenov</h1>
-            <p class="hero-tag">Mechanical Engineer · Munich</p>
-          </div>
-          <div class="hero-buttons">
-            <a href="#projects" class="btn btn-primary">
-              View Projects
-            </a>
-            <a href="#contact" class="btn btn-outline-light">
-              Get in Touch
-            </a>
-          </div>
-        </div>
-      </div>
-
     </div>
+
+    <div class="hero-below">
+      <div class="hero-identity">
+        <h1 class="hero-title">Yaroslav Semenov</h1>
+        <p class="hero-tag">Mechanical Engineer · Munich</p>
+      </div>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#contact" class="btn btn-outline">Get in Touch</a>
+      </div>
+    </div>
+
   </section>
 
   <script>
@@ -72,7 +65,7 @@
     }
 
     addTrack('media/DE captions.vtt', 'de', 'Deutsch',  true);
-    addTrack('media/EN caption.vtt',  'en', 'English',  false);
+    addTrack('media/EN captions.vtt',  'en', 'English',  false);
 
     // Вмикаємо DE субтитри після завантаження метаданих
     function enableSubtitles() {
