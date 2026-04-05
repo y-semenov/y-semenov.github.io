@@ -152,8 +152,8 @@ img {
   background-color: transparent;
   color: #ffffff;
   text-shadow:
-    0 1px 3px rgba(0, 0, 0, 0.9),
-    0 0 10px rgba(0, 0, 0, 0.6);
+    0 0 4px rgba(0, 0, 0, 1),
+    0 0 8px rgba(0, 0, 0, 0.9);
   font-size: 88%;
 }
 
@@ -260,6 +260,14 @@ img {
 @media (max-width: 600px) {
   .hero {
     padding: 16px 16px 40px;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .hero-video-wrap {
+    flex: none;
+    width: 100%;
+    aspect-ratio: 3 / 4;
   }
 
   .hero-title {
@@ -839,7 +847,6 @@ a.contact-item:hover {
 @media (max-width: 900px) {
   .hero {
     flex-direction: column;
-    text-align: center;
     padding: 60px 24px;
   }
 
