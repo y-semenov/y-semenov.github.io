@@ -147,6 +147,43 @@ img {
   background: #111;
 }
 
+/* Video HUD controls */
+.video-hud {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.video-hud-langs {
+  display: flex;
+  gap: 4px;
+  pointer-events: auto;
+}
+
+.video-hud-lang {
+  background: rgba(255, 255, 255, 0.6);
+  color: #1a1a1a;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  padding: 4px 9px;
+  cursor: pointer;
+  transition: background 0.15s;
+  backdrop-filter: blur(8px);
+}
+
+.video-hud-lang:hover {
+  background: rgba(255, 255, 255, 0.85);
+}
+
+.video-hud-lang.active {
+  background: rgba(0, 0, 0, 0.12);
+}
+
 /* Subtitle styling */
 ::cue {
   background-color: transparent;

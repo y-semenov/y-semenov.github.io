@@ -32,6 +32,13 @@
         playsinline>
         <source src="media/VideoPitch.webm" type="video/webm">
       </video>
+      <div class="video-hud">
+        <div class="video-hud-langs">
+          <button class="video-hud-lang active" data-lang="de">DE</button>
+          <button class="video-hud-lang" data-lang="en">EN</button>
+          <button class="video-hud-lang" data-lang="off">Off</button>
+        </div>
+      </div>
     </div>
 
     <div class="hero-below">
@@ -84,6 +91,20 @@
     // ── Контроли hero-відео при hover ───────────────────────
     video.addEventListener('mouseenter', () => video.setAttribute('controls', ''));
     video.addEventListener('mouseleave', () => video.removeAttribute('controls'));
+
+    // ── HUD: перемикач субтитрів ────────────────────────────
+    document.querySelectorAll('.video-hud-lang').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.video-hud-lang')
+          .forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const lang = btn.dataset.lang;
+        for (let i = 0; i < video.textTracks.length; i++) {
+          const tt = video.textTracks[i];
+          tt.mode = (lang !== 'off' && tt.language === lang) ? 'showing' : 'hidden';
+        }
+      });
+    });
 
     // ── Відео карток проектів ───────────────────────────────
     document.querySelectorAll('.project-card-image video')
