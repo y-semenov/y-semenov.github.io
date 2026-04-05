@@ -151,7 +151,11 @@ img {
 .video-hud {
   position: absolute;
   top: 14px;
+  left: 16px;
   right: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   pointer-events: none;
   z-index: 2;
 }
@@ -163,6 +167,7 @@ img {
 }
 
 .video-hud-lang {
+  pointer-events: auto;
   background: rgba(255, 255, 255, 0.6);
   color: #1a1a1a;
   border: none;
@@ -182,6 +187,20 @@ img {
 
 .video-hud-lang.active {
   background: rgba(0, 0, 0, 0.12);
+}
+
+#mute-btn,
+.video-hud-langs .video-hud-lang {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+}
+
+#mute-btn img {
+  display: block;
 }
 
 /* Subtitle styling */
