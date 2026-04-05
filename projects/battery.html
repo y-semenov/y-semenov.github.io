@@ -17,7 +17,7 @@
     <p class="project-tag">
       BMW · Master's Thesis · Aug 2024 – May 2025
     </p>
-    <h1>Simulative Analysis of Internal Short Circuit Criticality in Li-Ion Cells</h1>
+    <h1>Simulative Analysis of Internal Short Circuits in Li-Ion Cells</h1>
     <p class="project-subtitle">
       Built a 3D thermal simulation in Star-CCM+ to determine 
       the critical heat generation threshold at which 
@@ -27,8 +27,17 @@
     </p>
   </header>
 
+  <!--
   <div class="project-hero">
     <canvas id="rotation-canvas" style="max-width: 500px; width: 100%; height: auto; border-radius: 12px; display: block; margin: 0 auto;"></canvas>
+    <p class="caption">
+      Star-CCM+ simulation model — cylindrical Li-Ion cells in a representative pack section with surrounding foam
+    </p>
+  </div>
+  -->
+
+  <div class="project-hero">
+    <img src="../media/Embedded Cells.jpg" alt="Star-CCM+ simulation model — cylindrical Li-Ion cells">
     <p class="caption">
       Star-CCM+ simulation model — cylindrical Li-Ion cells in a representative pack section with surrounding foam
     </p>
@@ -204,25 +213,19 @@
       </div>
     </section>
 
+    <section>
+      <h2>See next</h2>
+      <a href="ktl.html" class="see-next-card">
+        <img class="nav-card-img" src="../media/KTL asdv.png" alt="KTL Simulation">
+        <div class="nav-card-text">
+          <span class="nav-title">KTL Simulation</span>
+        </div>
+      </a>
+    </section>
+
   </main>
 
-  <div class="project-bottom-nav">
-    <a href="nvh.html">
-      <div class="nav-card-text">
-        <span class="nav-direction">← Previous</span>
-        <span class="nav-title">NVH Test Bench</span>
-      </div>
-      <img class="nav-card-img" src="../media/Test Bench CAD.jpg" alt="NVH Test Bench">
-    </a>
-    <a href="roboter.html" class="nav-next">
-      <img class="nav-card-img" src="../media/Robot preview static.jpg" alt="Self-Balancing Robot">
-      <div class="nav-card-text">
-        <span class="nav-direction">Next →</span>
-        <span class="nav-title">Balancing Robot</span>
-      </div>
-    </a>
-  </div>
-
+  <!--
   <script>
     // --- Image Sequence: Battery Cells Rotation ---
     const canvas = document.getElementById('rotation-canvas');
@@ -263,6 +266,11 @@
 
     window.addEventListener('scroll', drawFrame, { passive: true });
   </script>
+  -->
+
+  <footer class="footer">
+    <p>© 2026 Yaroslav Semenov</p>
+  </footer>
 
   <script>
     const video = document.getElementById('thermal-runaway-video');

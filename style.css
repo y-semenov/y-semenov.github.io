@@ -453,7 +453,6 @@ a.contact-item:hover {
   padding: 32px;
   font-size: 0.82rem;
   color: #bbb;
-  border-top: 1px solid #eee;
 }
 
 /* =========================================
@@ -461,7 +460,7 @@ a.contact-item:hover {
    ========================================= */
 .project-detail-nav {
   height: 60px;
-  padding: 0 max(20px, calc((100% - 900px) / 2 + 40px));
+  padding: 0 max(40px, calc((100% - 900px) / 2 + 40px));
   border-bottom: 1px solid #eee;
   position: sticky;
   top: 0;
@@ -550,7 +549,7 @@ a.contact-item:hover {
 .project-content {
   max-width: 720px;
   margin: 0 auto;
-  padding: 0 40px 32px;
+  padding: 0 40px 200px;
 }
 
 .project-content section {
@@ -726,18 +725,8 @@ a.contact-item:hover {
   color: #444;
 }
 
-/* Bottom navigation between projects */
-.project-bottom-nav {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 40px 40px 200px;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
-  border-top: 1px solid #eee;
-}
-
-.project-bottom-nav a {
+/* See Next card */
+.see-next-card {
   display: flex;
   flex-direction: row;
   height: 170px;
@@ -745,14 +734,16 @@ a.contact-item:hover {
   border: 1px solid #e8e8e4;
   border-radius: 10px;
   transition: border-color 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  color: inherit;
 }
 
-.project-bottom-nav a:hover {
+.see-next-card:hover {
   border-color: #1a1a1a;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 }
 
-.project-bottom-nav a:hover .nav-card-img {
+.see-next-card:hover .nav-card-img {
   transform: scale(1.04);
 }
 
@@ -765,31 +756,13 @@ a.contact-item:hover {
   padding: 24px 28px;
 }
 
-.project-bottom-nav a.nav-next {
-  order: -1;
-}
-
-.project-bottom-nav a.nav-next .nav-card-img {
-  order: 1;
-}
-
-.project-bottom-nav a.nav-next .nav-card-text {
-  text-align: left;
-}
-
 .nav-card-img {
   width: 50%;
   object-fit: cover;
   flex-shrink: 0;
   display: block;
   transition: transform 0.4s;
-}
-
-.nav-direction {
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #767676;
+  order: 1;
 }
 
 .nav-title {
@@ -850,33 +823,19 @@ a.contact-item:hover {
 
   .project-header,
   .project-hero,
-  .project-content,
-  .project-bottom-nav {
+  .project-content {
     padding-left: 20px;
     padding-right: 20px;
   }
 
-  .project-bottom-nav {
-    grid-template-columns: 1fr;
-  }
-
-  .project-bottom-nav a {
+  .see-next-card {
     flex-direction: column;
     height: auto;
   }
 
-  .project-bottom-nav a .nav-card-img,
-  .project-bottom-nav a.nav-next .nav-card-img {
+  .see-next-card .nav-card-img {
     order: -1;
     width: 100%;
     height: 160px;
-  }
-
-  .project-bottom-nav a.nav-next {
-    order: -1;
-  }
-
-  .project-bottom-nav a.nav-next .nav-card-text {
-    text-align: left;
   }
 }
