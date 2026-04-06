@@ -467,7 +467,7 @@ img {
   grid-template-columns: 140px 1fr;
   gap: 32px;
   padding: 40px 0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #d4d4d0;
 }
 
 .timeline-item:last-child {
