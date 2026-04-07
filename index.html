@@ -195,6 +195,65 @@
 
     // ── Логотипи у hero-відео ───────────────────────────────
     const logosWrap = document.querySelector('.video-logos');
+    const vlogos = {
+      tum:   document.querySelector('.vlogo-tum'),
+      bmw:   document.querySelector('.vlogo-bmw'),
+      mahle: document.querySelector('.vlogo-mahle'),
+    };
+
+    // Координати як частки відео-полотна (0–1): x/y = лівий верхній кут, w = ширина
+    const LOGO_POS = {
+      desktop: {
+        tum:   { x: 0.115, y: 0.353, w: 0.11 },
+        bmw:   { x: 0.3, y: 0.35, w: 0.125 },
+        mahle: { x: 0.181, y: 0.52, w: 0.165 },
+      },
+      mobile: {
+        tum:   { x: 0.385, y: 0.17, w: 0.081 },
+        bmw:   { x: 0.385, y: 0.32, w: 0.09 },
+        mahle: { x: 0.385, y: 0.45, w: 0.117 },
+      },
+    };
+
+    function positionLogos() {
+      const wrap = document.querySelector('.hero-video-wrap');
+      const cW = wrap.offsetWidth;
+      const cH = wrap.offsetHeight;
+      const vW = video.videoWidth;
+      const vH = video.videoHeight;
+      if (!vW || !vH) return;
+
+      // object-fit: cover — масштаб щоб покрити контейнер
+      const s = Math.max(cW / vW, cH / vH);
+      const rW = vW * s;
+      const rH = vH * s;
+
+      // object-position: 64% 50% на мобільному, 50% 50% на десктопі
+      const isMobile = window.innerWidth <= 600;
+      const posX = isMobile ? 0.64 : 0.50;
+      const offsetX = -(rW - cW) * posX;
+      const offsetY = -(rH - cH) * 0.50;
+
+      const cfg = isMobile ? LOGO_POS.mobile : LOGO_POS.desktop;
+      for (const [key, pos] of Object.entries(cfg)) {
+        const el = vlogos[key];
+        el.style.left  = (offsetX + pos.x * rW) + 'px';
+        el.style.top   = (offsetY + pos.y * rH) + 'px';
+        el.style.width = (pos.w * rW) + 'px';
+      }
+    }
+
+    function initLogos() {
+      positionLogos();
+      window.addEventListener('resize', positionLogos);
+    }
+
+    if (video.readyState >= 1) {
+      initLogos();
+    } else {
+      video.addEventListener('loadedmetadata', initLogos, { once: true });
+    }
+
     video.addEventListener('timeupdate', () => {
       const t = video.currentTime;
       const visible = t >= 17.05 && t < 23.29;
