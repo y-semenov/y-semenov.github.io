@@ -986,6 +986,10 @@ a.contact-item:hover {
     padding: 0 20px;
   }
 
+  .project-detail-nav {
+    padding: 0 20px;
+  }
+
   .nav-links {
     gap: 20px;
   }
