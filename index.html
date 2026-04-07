@@ -53,6 +53,11 @@
         <source src="media/VideoPitch.webm" type="video/webm">
       </video>
       <div class="subtitle-overlay" hidden></div>
+      <div class="video-logos">
+        <img class="vlogo vlogo-tum"   src="media/logo TUM.png"   alt="TUM">
+        <img class="vlogo vlogo-bmw"   src="media/logo BMW.png"   alt="BMW Group">
+        <img class="vlogo vlogo-mahle" src="media/logo MAHLE.png" alt="MAHLE">
+      </div>
       <div class="video-hud">
         <button class="video-hud-lang" id="mute-btn">
           <img src="media/sound-mute.svg" alt="Unmute" id="mute-icon" width="18" height="18">
@@ -186,6 +191,14 @@
         btn.classList.add('active');
         setActiveLang(btn.dataset.lang);
       });
+    });
+
+    // ── Логотипи у hero-відео ───────────────────────────────
+    const logosWrap = document.querySelector('.video-logos');
+    video.addEventListener('timeupdate', () => {
+      const t = video.currentTime;
+      const visible = t >= 17.05 && t < 23.29;
+      logosWrap.classList.toggle('visible', visible);
     });
 
     // ── Відео карток проектів ───────────────────────────────

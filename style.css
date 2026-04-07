@@ -203,6 +203,38 @@ img {
   display: block;
 }
 
+/* Video logos overlay */
+.video-logos {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.video-logos.visible {
+  opacity: 1;
+  transition: none;
+}
+
+.vlogo {
+  position: absolute;
+  display: block;
+}
+
+/* Desktop positions */
+.vlogo-tum   { top: 18%; left: 5%;  width: 13%; }
+.vlogo-bmw   { top: 18%; left: 22%; width: 13%; }
+.vlogo-mahle { top: 42%; left: 5%;  width: 17%; }
+
+/* Mobile positions */
+@media (max-width: 600px) {
+  .vlogo-tum   { top: 17%; left: 5%;  width: 22%; }
+  .vlogo-bmw   { top: 32%; left: 5%; width: 22%; }
+  .vlogo-mahle { top: 45%; left: 5%;  width: 28%; }
+}
+
 /* Subtitle overlay */
 .subtitle-overlay {
   position: absolute;
