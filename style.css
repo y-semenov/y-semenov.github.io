@@ -203,14 +203,34 @@ img {
   display: block;
 }
 
-/* Subtitle styling */
-::cue {
-  background-color: transparent;
+/* Subtitle overlay */
+.subtitle-overlay {
+  position: absolute;
+  top: 80%;
+  left: 10%;
+  right: 10%;
+  text-align: center;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
   color: #ffffff;
+  font-size: 1.7rem;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+  line-height: 1.45;
+  white-space: pre-line;
   text-shadow:
     0 0 4px rgba(0, 0, 0, 1),
     0 0 8px rgba(0, 0, 0, 0.9);
-  font-size: 88%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+@media (max-width: 600px) {
+  .subtitle-overlay {
+    font-size: 1rem;
+    bottom: 10px;
+    left: 8px;
+    right: 8px;
+  }
 }
 
 /* Саме відео */
