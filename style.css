@@ -326,6 +326,10 @@ img {
     aspect-ratio: 3 / 4;
   } */
 
+  .hero-video-player {
+    object-position: 64% 50%;
+  }
+
   .hero-title {
     font-size: 1.3rem;
   }
