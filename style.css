@@ -315,9 +315,9 @@ img {
 
 @media (max-width: 600px) {
   .hero {
-    padding: 16px 16px 40px;
+    padding: 12px 16px 20px;
     justify-content: center;
-    gap: 20px;
+    gap: 40px;
     height: calc(100svh - 60px);
   }
 
@@ -331,12 +331,17 @@ img {
     object-position: 64% 50%;
   }
 
+  .hero-below {
+    margin-top: 0;
+    gap: 10px;
+  }
+
   .hero-title {
-    font-size: 1.3rem;
+    font-size: 1.6rem;
   }
 
   .hero-tag {
-    font-size: 0.72rem;
+    font-size: 0.8rem;
   }
 
   .btn {
