@@ -320,11 +320,11 @@ img {
     gap: 20px;
   }
 
-  .hero-video-wrap {
+  /* .hero-video-wrap {
     flex: none;
     width: 100%;
     aspect-ratio: 3 / 4;
-  }
+  } */
 
   .hero-title {
     font-size: 1.3rem;
