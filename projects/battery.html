@@ -22,6 +22,243 @@
   <meta name="twitter:image" content="https://y-semenov.com/media/OpenGraph Battery.jpg">
 
   <link rel="stylesheet" href="../style.css">
+
+  <style>
+    /* ── Stat strip ── */
+    .stat-strip {
+      display: flex;
+      gap: 0;
+      border: 1px solid #e8e8e4;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 40px 0;
+    }
+
+    .stat-item {
+      flex: 1;
+      padding: 24px 20px;
+      border-right: 1px solid #e8e8e4;
+      text-align: center;
+    }
+
+    .stat-item:last-child {
+      border-right: none;
+    }
+
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #1a1a1a;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: #767676;
+      line-height: 1.4;
+    }
+
+    /* ── Callout box ── */
+    .callout {
+      background: #f7f7f5;
+      border-left: 3px solid #1a1a1a;
+      border-radius: 0 8px 8px 0;
+      padding: 20px 24px;
+      margin: 32px 0;
+    }
+
+    .callout p {
+      margin: 0;
+      font-size: 1.05rem;
+      color: #333;
+      line-height: 1.6;
+      font-style: italic;
+    }
+
+    /* ── Factor grid ── */
+    .factor-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 32px 0;
+    }
+
+    .factor-card {
+      border: 1px solid #e8e8e4;
+      border-radius: 10px;
+      padding: 20px 22px;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+
+    .factor-card:hover {
+      border-color: #1a1a1a;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+      transform: translateY(-2px);
+    }
+
+    .factor-card:hover .factor-title::after {
+      content: ' ↓';
+      font-weight: 400;
+      color: #aaa;
+    }
+
+    /* Scroll target offset — compensates for sticky nav + breathing room */
+    .project-content section[id] {
+      scroll-margin-top: 80px;
+    }
+
+    .factor-num {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: #aaa;
+      margin-bottom: 6px;
+    }
+
+    .factor-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: #1a1a1a;
+    }
+
+    .factor-desc {
+      font-size: 0.88rem;
+      color: #555;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* ── Simulation steps ── */
+    .sim-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 32px 0;
+      border: 1px solid #e8e8e4;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .sim-step {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 0;
+      border-bottom: 1px solid #e8e8e4;
+      align-items: stretch;
+    }
+
+    .sim-step:last-child {
+      border-bottom: none;
+    }
+
+    .sim-step-power {
+      background: #f7f7f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1a1a1a;
+      border-right: 1px solid #e8e8e4;
+      padding: 16px 8px;
+    }
+
+    .sim-step-result {
+      padding: 14px 18px;
+      font-size: 0.9rem;
+      color: #444;
+      line-height: 1.5;
+      display: flex;
+      align-items: center;
+    }
+
+    .sim-step.runaway .sim-step-power {
+      background: #fff5f5;
+      color: #c0392b;
+    }
+
+    .sim-step.runaway .sim-step-result {
+      color: #c0392b;
+      font-weight: 600;
+    }
+
+    .sim-step.stable .sim-step-power {
+      background: #f3faf3;
+      color: #27794e;
+    }
+
+    /* ── Result highlight ── */
+    .result-highlight {
+      background: #1a1a1a;
+      color: #fff;
+      border-radius: 10px;
+      padding: 28px 28px;
+      margin: 32px 0;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .result-highlight-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .result-highlight-number {
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .result-highlight-label {
+      font-size: 0.82rem;
+      color: #aaa;
+      line-height: 1.4;
+    }
+
+    .result-highlight-divider {
+      border: none;
+      border-left: 1px solid #444;
+      align-self: stretch;
+      margin: 0;
+    }
+
+    @media (max-width: 560px) {
+      .factor-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-strip {
+        flex-direction: column;
+      }
+
+      .stat-item {
+        border-right: none;
+        border-bottom: 1px solid #e8e8e4;
+      }
+
+      .stat-item:last-child {
+        border-bottom: none;
+      }
+
+      .result-highlight {
+        grid-template-columns: 1fr;
+      }
+
+      .result-highlight-divider {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -34,141 +271,412 @@
     <p class="project-tag">
       BMW · Master's Thesis · Aug 2024 – May 2025
     </p>
-    <h1>Simulative Analysis of Internal Short Circuits in Li-Ion Cells</h1>
+    <h1>Critical Heat Power of Internal Short Circuits in Li-Ion Cells</h1>
     <p class="project-subtitle">
-      Built a 3D thermal simulation in Star-CCM+ to determine 
-      the critical heat generation threshold at which 
-      manufacturing-induced internal short circuits 
-      can trigger thermal runaway — providing a quantitative 
-      basis for BMW's on-board battery diagnostics system.
+      Built a 3D thermal simulation in Star-CCM+ that determines
+      how much heat a manufacturing-induced internal short circuit
+      must generate before it can trigger thermal runaway —
+      producing the first physically-founded quantitative thresholds
+      for BMW's on-board battery diagnostics.
     </p>
   </header>
 
-  <!--
   <div class="project-hero">
-    <canvas id="rotation-canvas" style="max-width: 500px; width: 100%; height: auto; border-radius: 12px; display: block; margin: 0 auto;"></canvas>
+    <img src="../media/Embedded Cells.jpg" alt="Star-CCM+ simulation model — cylindrical Li-Ion cells in a representative pack section">
     <p class="caption">
-      Star-CCM+ simulation model — cylindrical Li-Ion cells in a representative pack section with surrounding foam
-    </p>
-  </div>
-  -->
-
-  <div class="project-hero">
-    <img src="../media/Embedded Cells.jpg" alt="Star-CCM+ simulation model — cylindrical Li-Ion cells">
-    <p class="caption">
-      Star-CCM+ simulation model — cylindrical Li-Ion cells in a representative pack section with surrounding foam
+      Complete simulation model: a defective cell surrounded by six neighbours and passive
+      cooling elements — allowing realistic heat dissipation boundary conditions
     </p>
   </div>
 
   <main class="project-content">
 
+    <!-- ── 1. BACKGROUND ──────────────────────────────────── -->
     <section>
-      <h2>Background</h2>
+      <h2>The Production Problem</h2>
       <p>
-        At the production volumes required for BMW's 
-        Neue Klasse platform — hundreds of millions 
-        of cells — a small fraction of cells will 
-        inevitably contain manufacturing defects: 
-        metallic particles in the jelly roll, 
-        electrode micro-cracks, tab burrs folding inward. 
-        Most are caught by quality monitoring systems; 
-        some are not.
+        Manufacturing a lithium-ion cell involves over a dozen sequential
+        process steps — mixing, coating, drying, calendering, cutting,
+        winding, filling, forming and testing. At every step, something can
+        go wrong. In practice, reject rates in well-controlled production
+        lines are not negligible:
       </p>
+
+      <div class="stat-strip">
+        <div class="stat-item">
+          <div class="stat-number">1–2%</div>
+          <div class="stat-label">Electrode<br>production</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">1–3%</div>
+          <div class="stat-label">Cell<br>assembly</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">1–2%</div>
+          <div class="stat-label">Formation<br>&amp; test</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">up to 5%</div>
+          <div class="stat-label">Across entire<br>production</div>
+        </div>
+      </div>
+
       <p>
-        A defective cell may initially perform normally 
-        but degrade progressively under cycling, 
-        eventually developing an internal short circuit 
-        that can escalate to thermal runaway and fire.
+        This means that without systematic quality control,
+        roughly <strong>every 30th cell</strong> coming off the line
+        would be defective — and potentially dangerous. Quality control
+        is therefore not optional; it is a core safety measure.
       </p>
     </section>
 
+    <!-- ── 2. DEFECT TYPES ──────────────────────────────────── -->
     <section>
-      <h2>The Problem</h2>
+      <h2>How Defects Become Dangerous</h2>
       <p>
-        BMW needed a software-only on-board diagnostic 
-        system capable of flagging suspicious cells 
-        using only sensors already present in 
-        production vehicles — specifically, 
-        per-parallel-group voltage monitoring 
-        (already standard in every BMS).
+        Manufacturing defects take many forms. A separator slightly
+        misaligned during winding can create a direct path between
+        electrodes. Insufficient electrode coating leaves bare anode
+        spots where lithium cannot intercalate and instead plates
+        as metallic lithium, growing dendrites that pierce the separator.
+        Electrode cutting burrs, foreign particles, or tab-folding
+        all interfere with ion flow and can similarly lead to
+        dendrite formation.
       </p>
       <p>
-        The core challenge: setting detection thresholds. 
-        Too sensitive → excessive false alarms and 
-        unnecessary service visits. 
-        Too lenient → dangerous defects go undetected. 
-        Neither extreme was acceptable.
-      </p>
-      <p>
-        What was missing was a quantitative understanding 
-        of how much heat a manufacturing-induced 
-        internal short circuit generates, 
-        and how much heat is needed to trigger 
-        thermal runaway under real operating conditions.
+        These mechanisms are varied, but they share a single
+        endpoint: an <strong>internal short circuit</strong>.
+        And they are not rare edge cases —
+        manufacturing defects account for approximately
+        <strong>90% of all internal short circuits</strong>
+        that cause field failures at cell level.
       </p>
     </section>
 
     <figure>
-      <img src="../media/Battery Diagnostic Scheme.jpg" alt="Diagnostic logic diagram">
+      <img src="../media/Coating Defects.jpg" alt="Typical defect types: dendrite growth, separator misalignment, tab-folding, foreign particles">
       <figcaption>
-        Voltage monitoring estimates short circuit current and heat generation —
-        my task was to determine at what heat level the cell becomes safety-critical.
+        Typical defect types observed in production: dendrite growth, separator micro-cracks
+        and misalignment, tab-folding, and foreign particle contamination
       </figcaption>
     </figure>
 
+    <!-- ── 3. QUALITY CONTROL GAP ──────────────────────────────────── -->
     <section>
-      <h2>My Approach</h2>
+      <h2>When Quality Control is Not Enough</h2>
       <p>
-        After an intensive literature review of 
-        degradation mechanisms — from initial defect 
-        through SEI growth, lithium plating, 
-        separator failure, to thermal runaway — 
-        I developed a 3D thermal simulation in Star-CCM+.
+        Even well-designed quality monitoring systems can have gaps.
+        Imagine a supplier informing BMW that a foreign-particle sensor
+        or a tab-folding detector was miscalibrated for the past six months —
+        and that they cannot guarantee the cells delivered during that period
+        are completely defect-free.
+      </p>
+      <p>
+        What is the right response? In the worst case, every affected
+        vehicle must be individually inspected — an enormous logistical
+        effort that costs time, money, and reputational damage.
+        The question is whether there is a smarter alternative.
       </p>
 
-      <figure>
-        <img src="../media/ISC mesh model.jpg" alt="Diagnostic logic diagram">
-        <figcaption>
-          Star-CCM+ mesh of a single cylindrical cell — the inset shows the point heat source (yellow) emulating an internal short circuit, with a locally refined mesh to resolve the steep thermal gradients
-        </figcaption>
-      </figure>
+      <div class="callout">
+        <p>
+          What if the vehicle itself could detect whether its battery
+          pack contains a defect — and respond accordingly, before
+          the situation becomes critical?
+        </p>
+      </div>
 
       <p>
-        Key model features:
+        This is the concept of <strong>on-board diagnostics (OBD)</strong>
+        for battery safety. A suspicious vehicle series could be
+        placed remotely into an "elevated alert mode" —
+        monitoring for anomalous behaviour. Vehicles showing suspicious
+        patterns could be individually flagged for workshop inspection,
+        while a protective operating window (reduced charge/discharge limits,
+        active cooling, no fast-charging) keeps them safe in the meantime.
+      </p>
+    </section>
+
+    <figure>
+      <img src="../media/Battery Diagnostic Scheme.jpg" alt="On-board diagnostics logic diagram">
+      <figcaption>
+        The on-board diagnostic logic: anomalous self-discharge detected via voltage monitoring
+        triggers an elevated alert mode — voltage-based estimation of short-circuit heat
+        then determines whether a workshop inspection is needed
+      </figcaption>
+    </figure>
+
+    <!-- ── 4. VOLTAGE MONITORING ──────────────────────────────────── -->
+    <section>
+      <h2>Voltage-Based Short Circuit Detection</h2>
+      <p>
+        BMW's BMS already measures voltage per parallel group —
+        a sensor that is present in every production vehicle.
+        An internal short circuit acts as an additional current consumer,
+        converting stored electrical energy into heat.
+        This leaves a characteristic signature:
       </p>
       <ul>
         <li>
-          Cylindrical cell geometry with jelly roll, 
-          surrounded by neighbouring cells 
-          in a representative pack section
+          During charging: the affected cell charges more slowly
+          than its neighbours in the same parallel group
         </li>
         <li>
-          Configurable point heat source 
-          emulating short circuits of varying intensity
-        </li>
-        <li>
-          Thermal reactivity of the jelly roll 
-          implemented from ARC (Accelerated Rate 
-          Calorimetry) measurement data — 
-          capturing exothermic reactions triggered 
-          at elevated temperatures
-        </li>
-        <li>
-          Anisotropic thermal conductivity — 
-          distinguishing radial (low, through 
-          separator sandwich layers) from 
-          axial (high, along electrode conductors) 
-          heat transport
-        </li>
-        <li>
-          Configurable ambient temperature and 
-          heat dissipation boundary conditions
-        </li>
-        <li>
-          Surrounding cell and foam thermal 
-          properties included
+          At rest: the affected cell self-discharges faster
+          than its neighbours
         </li>
       </ul>
+      <p>
+        By comparing voltage curves within a parallel group,
+        the BMS can estimate the leakage current — and from that,
+        the thermal power being generated: <strong>Q̇ = U · I</strong>.
+      </p>
+      <p>
+        Detection, however, is only half the problem.
+        The harder question is: <em>at what level of detected heat
+        generation should we intervene?</em>
+        Is 10 mA of self-discharge worth a workshop visit? What about
+        100 mA? 1 A? Without a reference, there is no principled answer.
+      </p>
+
+      <div class="callout">
+        <p>
+          What ohmic heat power can a Li-Ion cylindrical cell tolerate
+          from an internal short circuit before thermal instability sets in?
+        </p>
+      </div>
+
+      <p>
+        This was the central question of my master's thesis.
+      </p>
+    </section>
+
+    <!-- ── 5. SIMULATION APPROACH ──────────────────────────────────── -->
+    <section>
+      <h2>Simulation Approach</h2>
+      <p>
+        To answer this question, I developed a 3D thermal simulation
+        in Star-CCM+. A defective cell is not a passive object —
+        it stores both electrical and chemical energy, and the
+        outcome of a short circuit depends on the interplay of
+        four factors:
+      </p>
+
+      <div class="factor-grid">
+        <a href="#hotspot" class="factor-card">
+          <div class="factor-num">Factor 01</div>
+          <div class="factor-title">Initial Hotspot Heat Power</div>
+          <p class="factor-desc">
+            The input variable — how much heat the short circuit
+            generates locally. This is the disturbance that
+            may or may not destabilise the cell.
+          </p>
+        </a>
+        <a href="#thermal-resistances" class="factor-card">
+          <div class="factor-num">Factor 02</div>
+          <div class="factor-title">Thermal Resistances</div>
+          <p class="factor-desc">
+            The cell geometry and material conductivities determine
+            how heat spreads from the hotspot — and how quickly
+            it can escape to the surroundings.
+          </p>
+        </a>
+        <a href="#thermal-reactivity" class="factor-card">
+          <div class="factor-num">Factor 03</div>
+          <div class="factor-title">Thermal Reactivity</div>
+          <p class="factor-desc">
+            The jelly roll stores chemical energy. At elevated
+            temperatures, exothermic reactions begin self-heating
+            the cell — an amplifying feedback loop.
+          </p>
+        </a>
+        <a href="#heat-dissipation" class="factor-card">
+          <div class="factor-num">Factor 04</div>
+          <div class="factor-title">Heat Dissipation to Environment</div>
+          <p class="factor-desc">
+            The rate at which the surrounding pack structure
+            carries heat away from the cell sets the ceiling
+            for how much hotspot power the system can tolerate.
+          </p>
+        </a>
+      </div>
+    </section>
+
+    <!-- ── 5a. HOTSPOT MODEL ──────────────────────────────────── -->
+    <section id="hotspot">
+      <h2>Initial Hotspot Heat Power</h2>
+      <p>
+        The short circuit is modelled as a small volume element
+        inside the 3D jelly roll — a configurable heat source
+        whose power, position, and size I can set freely.
+        Think of it as a "spark plug": I can place it anywhere
+        in the cell and ask whether its heat output ignites
+        the cell or not.
+      </p>
+      <p>
+        The mesh is refined locally around this hotspot
+        to resolve the steep thermal gradients that
+        develop there.
+      </p>
+    </section>
+
+    <figure>
+      <img src="../media/ISC mesh model.jpg" alt="Star-CCM+ mesh model with point heat source">
+      <figcaption>
+        Star-CCM+ mesh of a single cylindrical cell — the inset shows the point heat source
+        (yellow volume element) emulating an internal short circuit,
+        with a locally refined mesh to resolve the steep thermal gradients
+      </figcaption>
+    </figure>
+
+    <!-- ── 5b. THERMAL RESISTANCES ──────────────────────────────────── -->
+    <section id="thermal-resistances">
+      <h2>Thermal Resistances: Anisotropic Jelly Roll</h2>
+      <p>
+        The cell periphery — aluminium top current collector,
+        copper bottom current collector, plastic spacer,
+        electrolyte-filled gaps — is modelled with material properties
+        taken from literature.
+      </p>
+      <p>
+        The jelly roll is the key challenge. It is not a homogeneous
+        material but a wound stack of separator, anode, cathode,
+        and collector foils — each with its own thermal conductivity.
+        Resolving every individual layer would require an impractically
+        fine mesh.
+      </p>
+      <p>
+        Instead, I mesh the jelly roll as a homogeneous body but
+        assign <strong>direction-dependent (anisotropic) conductivity</strong>
+        in a cylindrical coordinate system:
+      </p>
+      <ul>
+        <li>
+          <strong>Axial &amp; polar directions</strong> (along the electrodes):
+          high conductivity — heat travels easily along the wound layers
+        </li>
+        <li>
+          <strong>Radial direction</strong> (through the layer stack,
+          crossing separators): much lower conductivity —
+          the separator sandwich acts as a thermal barrier
+        </li>
+      </ul>
+      <p>
+        This produces a characteristic temperature profile around
+        a hotspot: an ellipse in cross-section, curved to follow
+        the winding of the electrodes; a straight ellipse in the
+        axial view, where the electrodes run straight.
+      </p>
+    </section>
+
+    <figure>
+      <img src="../media/Anisotropic Jelly Roll.jpg" alt="Anisotropic temperature distribution around a hotspot in the jelly roll">
+      <figcaption>
+        Temperature distribution around a hotspot — the anisotropic conductivity
+        creates characteristic curved ellipses in cross-section,
+        following the curvature of the wound electrodes
+      </figcaption>
+    </figure>
+
+    <!-- ── 5c. THERMAL REACTIVITY ──────────────────────────────────── -->
+    <section id="thermal-reactivity">
+      <h2>Thermal Reactivity: Chemical Self-Heating</h2>
+      <p>
+        A charged jelly roll is not just a passive thermal mass —
+        it stores chemical energy that is released exothermically
+        at elevated temperatures. As the hotspot heats up the
+        surrounding material, exothermic reactions begin
+        contributing their own heat — a runaway feedback loop.
+      </p>
+      <p>
+        I implemented this using <strong>ARC (Accelerated Rate Calorimetry)</strong>
+        data from experimental measurements: a temperature-dependent
+        self-heating rate curve that drives volumetric heat generation
+        throughout the jelly roll. For example, any point in the
+        jelly roll that reaches 140 °C will begin self-heating
+        at approximately 1.5 K/min — independently of the original hotspot.
+      </p>
+    </section>
+
+    <figure>
+      <img src="../media/ARC Experiment.jpg" alt="ARC self-heating rate vs temperature curve">
+      <figcaption>
+        Temperature-dependent self-heating rate from Accelerated Rate Calorimetry measurements —
+        implemented as a volumetric heat source throughout the jelly roll.
+        The curve rises sharply above ~180 °C, marking the separator melting and uncontrollable runaway.
+      </figcaption>
+    </figure>
+
+    <!-- ── 5d. HEAT DISSIPATION ──────────────────────────────────── -->
+    <section id="heat-dissipation">
+      <h2>Heat Dissipation: Realistic Pack Environment</h2>
+      <p>
+        A cell in a vehicle pack is not suspended in free air.
+        It is surrounded by neighbouring cells, passive cooling
+        elements, and foam filling — all of which affect how quickly
+        heat can escape.
+      </p>
+      <p>
+        To capture this, I expanded the simulation system from a
+        single cell to a representative pack section:
+        <strong>six neighbouring cells</strong> arranged around the
+        defective one, with passive aluminium cooling channels
+        between them and foam filling the remaining gaps.
+        The convection boundary condition is applied not at the
+        cell surface, but at the outer boundary of this entire
+        system — with a heat transfer coefficient of 5 W/m²·K,
+        typical for passive air cooling.
+      </p>
+    </section>
+
+    <figure>
+      <img src="../media/Embedded Cells.jpg" alt="Star-CCM+ simulation model — cylindrical Li-Ion cells in a representative pack section">
+      <figcaption>
+        Complete simulation model: a defective cell surrounded by six neighbours and passive
+      cooling elements — allowing realistic heat dissipation boundary conditions
+      </figcaption>
+    </figure>
+
+    <!-- ── 6. ITERATIVE METHOD ──────────────────────────────────── -->
+    <section>
+      <h2>Finding the Critical Threshold: Iterative Search</h2>
+      <p>
+        To find the critical heat power, I use a binary-search
+        approach. Starting with a low power level and stepping
+        upward by 1 W, I run the simulation until it either
+        converges to a stable thermal equilibrium or diverges
+        into runaway. This narrows the threshold to a 1 W window,
+        after which I repeat with a finer step of 0.1 W.
+      </p>
+      <p>
+        For example, at an ambient temperature of 30 °C,
+        with the hotspot in the jelly roll centre:
+      </p>
+
+      <div class="sim-steps">
+        <div class="sim-step stable">
+          <div class="sim-step-power">3 W</div>
+          <div class="sim-step-result">Cell heats up, reaches stable equilibrium. Safe.</div>
+        </div>
+        <div class="sim-step stable">
+          <div class="sim-step-power">4 W</div>
+          <div class="sim-step-result">Heat front spreads further. Stable equilibrium again.</div>
+        </div>
+        <div class="sim-step stable">
+          <div class="sim-step-power">5 W</div>
+          <div class="sim-step-result">Stable, but chemical self-heating now makes a measurable contribution.</div>
+        </div>
+        <div class="sim-step runaway">
+          <div class="sim-step-power">6 W</div>
+          <div class="sim-step-result">Thermal runaway. The cell does not survive.</div>
+        </div>
+      </div>
+
+      <p>
+        The threshold lies somewhere between 5 and 6 W.
+        A second pass with 0.1 W steps refines it to
+        <strong>5.7 W (stable) / 5.8 W (runaway)</strong>
+        at these conditions:
+      </p>
     </section>
 
     <figure>
@@ -176,54 +684,210 @@
         <source src="../media/Thermal Runaway.mp4" type="video/mp4">
       </video>
       <figcaption>
-        3D thermal model in Star-CCM+ — 
-        cylindrical cell with jelly roll, 
-        point heat source and surrounding pack geometry
+        Simulation at the critical boundary: the heat front propagates through the jelly roll
+        and surrounding cells — the moment the input power exceeds the threshold,
+        the self-heating feedback loop takes over and thermal runaway becomes inevitable
+      </figcaption>
+    </figure>
+
+    <!-- ── 7. RESULTS: TEMPERATURE ──────────────────────────────────── -->
+    <section>
+      <h2>Results: Ambient Temperature Dependency</h2>
+      <p>
+        The first parameter study varied ambient temperature across
+        vehicles operating window. The result is a curve of critical
+        heat power as a function of temperature — everything above
+        the line triggers runaway, everything below is safe.
+      </p>
+      <p>
+        The direction of the trend is intuitive (hotter surroundings
+        reduce the cell's tolerance), but the <em>quantitative values</em>
+        are new:
+      </p>
+
+      <div class="result-highlight">
+        <div class="result-highlight-item">
+          <div class="result-highlight-number">8.0 W</div>
+          <div class="result-highlight-label">Critical threshold at −20 °C<br>(cold winter operation)</div>
+        </div>
+        <hr class="result-highlight-divider">
+        <div class="result-highlight-item">
+          <div class="result-highlight-number">4.8 W</div>
+          <div class="result-highlight-label">Critical threshold at +50 °C<br>(summer, charging in the sun)</div>
+        </div>
+      </div>
+
+      <p>
+        Across the full operating window of −20 °C to +50 °C,
+        the critical threshold changes by approximately
+        <strong>40%</strong>. For an on-board diagnostic algorithm,
+        this means a single fixed detection threshold would be
+        too conservative at cold temperatures and potentially
+        unsafe at high ones — the algorithm must be
+        temperature-aware.
+      </p>
+    </section>
+
+    <figure>
+      <img src="../media/heat power vs ambient temperature.jpg" alt="Critical heat power vs ambient temperature curve">
+      <figcaption>
+        Critical short-circuit heat power as a function of ambient temperature —
+        the boundary between safe self-dissipation (below) and thermal runaway (above).
+        Values drop by 40% across the operating window.
+      </figcaption>
+    </figure>
+
+    <!-- ── 8. RESULTS: POSITION ──────────────────────────────────── -->
+    <section>
+      <h2>Results: Spatial Position Dependency</h2>
+      <p>
+        The second parameter study mapped the critical threshold
+        across every position inside the cell. Within the jelly roll
+        bulk, the threshold is relatively uniform — the anisotropic
+        conductivity is constant there. Differences appear at
+        boundaries between components:
+      </p>
+      <ul>
+        <li>
+          <strong>Core (worst case):</strong> ~4.8 W —
+          the electrolyte-filled core has 3–4x lower radial
+          conductivity than the jelly roll, trapping heat more
+          effectively
+        </li>
+        <li>
+          <strong>Outer edge:</strong> ~5.1 W —
+          the thermal contact resistance between jelly roll and
+          can acts as additional insulation on one side,
+          slightly reducing tolerance
+        </li>
+        <li>
+          <strong>Jelly roll bulk:</strong> ~5.6–5.7 W —
+          consistent throughout the main winding volume
+        </li>
+      </ul>
+      <p>
+        Passive cooling channels between neighbouring cells
+        make surprisingly little difference — without active
+        flow, the aluminium channels provide only a modest
+        improvement (5.3 W vs. 5.1 W adjacent to foam).
+      </p>
+    </section>
+
+    <figure>
+      <img src="../media/Heatmap radial.jpg" alt="Heatmap of critical power vs position in the cell cross-section">
+      <figcaption>
+        Spatial map of critical heat power at 30 °C — each tile shows the maximum tolerable
+        power [W] for a short circuit at that position. Red tiles indicate the most
+        vulnerable locations (core, outer edge); values are highest near the current collectors.
       </figcaption>
     </figure>
 
     <section>
-      <h2>Results</h2>
-      <ul>
-        <li>
-          Critical heat generation threshold 
-          determined in Watts — the boundary below 
-          which the cell self-cools safely, 
-          above which thermal runaway 
-          becomes inevitable over time
-        </li>
-        <li>
-          Threshold mapped across varying ambient 
-          temperatures and state-of-charge conditions
-        </li>
-        <li>
-          Results provide direct quantitative input 
-          for parametrising the on-board 
-          diagnostic algorithm
-        </li>
-        <li>
-          Simulation confirmed that voltage-based 
-          self-discharge monitoring can in principle 
-          detect the relevant defect intensities 
-          before they become safety-critical
-        </li>
-        <li>
-          Presentation circulated across two BMW 
-          departments and repeated for a second 
-          audience on request
-        </li>
-      </ul>
+      <p>
+        The axial (height) study tells a different story.
+        Near the top and bottom of the cell, where the jelly roll
+        contacts the aluminium and copper current collectors
+        directly, heat can escape much more effectively —
+        the threshold rises to <strong>~9.3–9.7 W</strong>.
+        This is because there is no additional thermal resistance
+        between the jelly roll and the metallic current collectors
+        at those positions.
+      </p>
     </section>
 
+    <figure>
+      <img src="../media/Heatmap axial.jpg" alt="Heatmap of critical power vs position in the cell cross-section">
+      <figcaption>
+        Spatial map of critical heat power at 30 °C — each tile shows the maximum tolerable
+        power [W] for a short circuit at that position. Red tiles indicate the most
+        vulnerable locations (core, outer edge); values are highest near the current collectors.
+      </figcaption>
+    </figure>
+
+    <!-- ── 9. SUMMARY OF RESULTS ──────────────────────────────────── -->
     <section>
-      <h2>Tools & Skills</h2>
+      <h2>What the Numbers Mean</h2>
+      <p>
+        Combining the temperature and position studies gives a
+        complete picture of the cell's tolerance landscape.
+        The worst-case position (core) at high ambient temperature
+        (50 °C) represents the most vulnerable scenario in real
+        operation. The best-case position (near current collectors)
+        at cold ambient temperature produces a threshold nearly
+        twice as high.
+      </p>
+      <p>
+        The <strong>~50% difference between worst and best case
+        positions</strong> means that a short circuit's location
+        matters enormously — and that a conservative,
+        position-agnostic threshold would be appropriate
+        if position cannot be inferred from monitoring data.
+      </p>
+      <p>
+        These results provide the first physically-founded
+        quantitative basis for parametrising BMW's on-board
+        diagnostic algorithm: the BMS can now compare its
+        estimated heat generation against a threshold that
+        accounts for both ambient temperature and — in future
+        refinements — probable short-circuit location.
+      </p>
+    </section>
+
+    <!-- ── 10. CONTRIBUTION ──────────────────────────────────── -->
+    <section>
+      <h2>Contribution &amp; Next Steps</h2>
+      <p>
+        This thesis bridges a gap that previously had no solution.
+        Short circuit <em>detection</em> via voltage monitoring was
+        already possible — but there was no principled basis for
+        deciding <em>when</em> a detected event requires intervention.
+        The simulation provides:
+      </p>
+      <ul>
+        <li>
+          The first physically-founded, quantitative critical thresholds
+          for internal short circuits in BMW's cylindrical cells —
+          numbers that were simply not available before
+        </li>
+        <li>
+          A simulation tool that can be extended to other scenarios,
+          such as fast-charging (where electrode ohmic heating adds to
+          the background temperature) or different cell chemistries
+        </li>
+        <li>
+          A clear path toward a complete on-board diagnostic system:
+          not just detecting that something is wrong, but knowing
+          how serious it is
+        </li>
+      </ul>
+      <!--
+      <p>
+        The logical next step is experimental validation —
+        inducing controlled internal short circuits in instrumented
+        cells to verify the simulated thresholds.
+        A validated model can then be used iteratively:
+        experiments provide ground truth for model refinement,
+        while simulation provides physical insight that experiments
+        alone cannot deliver.
+      </p>
+      -->
+      <p>
+        The presentation was circulated across two BMW departments
+        and repeated for a second audience on request.
+      </p>
+    </section>
+
+    <!-- ── 11. TOOLS ──────────────────────────────────── -->
+    <section>
+      <h2>Tools &amp; Skills</h2>
       <div class="tags">
         <span>Star-CCM+</span>
         <span>CFD / Thermal simulation</span>
         <span>Li-Ion battery technology</span>
-        <span>Battery safety & degradation mechanisms</span>
+        <span>Battery safety &amp; degradation mechanisms</span>
         <span>ARC calorimetry data</span>
         <span>On-board diagnostics (OBD)</span>
+        <span>Anisotropic heat transfer modelling</span>
         <span>Scientific literature analysis</span>
         <span>Citavi</span>
         <span>MATLAB</span>
@@ -242,49 +906,6 @@
 
   </main>
 
-  <!--
-  <script>
-    // --- Image Sequence: Battery Cells Rotation ---
-    const canvas = document.getElementById('rotation-canvas');
-    const ctx = canvas.getContext('2d');
-
-    const FIRST_FRAME = 200;
-    const FRAME_COUNT = 69;
-    const frames = [];
-    let scrubEnd = 0;
-    let initialized = false;
-
-    for (let i = 0; i < FRAME_COUNT; i++) {
-      const img = new Image();
-      img.src = `../media/2046 WebP/rotate hd ${FIRST_FRAME + i}.webp`;
-      if (i === 0) {
-        img.onload = () => {
-          canvas.width = img.naturalWidth;
-          canvas.height = img.naturalHeight;
-          ctx.drawImage(img, 0, 0);
-          const rect = canvas.getBoundingClientRect();
-          scrubEnd = rect.top + window.scrollY - window.innerHeight / 2.5 + rect.height / 2;
-          initialized = true;
-        };
-      }
-      frames.push(img);
-    }
-
-    function drawFrame() {
-      if (!initialized) return;
-      const progress = Math.max(0, Math.min(1, window.scrollY / scrubEnd));
-      const frameIndex = Math.min(Math.floor(progress * FRAME_COUNT), FRAME_COUNT - 1);
-      const img = frames[frameIndex];
-      if (img.complete) {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.drawImage(img, 0, 0);
-      }
-    }
-
-    window.addEventListener('scroll', drawFrame, { passive: true });
-  </script>
-  -->
-
   <footer class="footer">
     <p>© 2026 Yaroslav Semenov</p>
   </footer>
@@ -294,10 +915,9 @@
     let userPaused = false;
     let observerPausing = false;
 
-    // Distinguish user-initiated pause from programmatic pause
     video.addEventListener('pause', () => {
       if (!observerPausing) userPaused = true;
-      observerPausing = false;  // reset here, after the async event fires
+      observerPausing = false;
     });
     video.addEventListener('play', () => {
       userPaused = false;
@@ -313,7 +933,6 @@
         } else {
           observerPausing = true;
           video.pause();
-          // observerPausing is reset inside the pause event listener
         }
       },
       { threshold: 0.3 }
