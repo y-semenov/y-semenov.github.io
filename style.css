@@ -105,25 +105,42 @@ img {
 }
 
 .nav-logo {
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 12px;
   font-weight: 700;
   font-size: 1.1rem;
   letter-spacing: 1px;
   color: #1a1a1a;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.nav-logo:hover {
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .nav-links {
   display: flex;
-  gap: 32px;
+  gap: 0px;
 }
 
 .nav-links a {
-  font-size: 0.9rem;
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 12px;
+  font-size: 0.92rem;
+  font-weight: 600;
   color: #444;
+  border-radius: 4px;
   transition: color 0.2s;
 }
 
 .nav-links a:hover {
   color: #1a1a1a;
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 /* =========================================
@@ -651,13 +668,20 @@ a.contact-item:hover {
 }
 
 .project-detail-nav a {
-  font-size: 0.88rem;
-  color: #555;
+  display: inline-flex;
+  align-items: center;
+  height: 34px;
+  padding: 0 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #444;
+  border-radius: 4px;
   transition: color 0.2s;
 }
 
 .project-detail-nav a:hover {
   color: #1a1a1a;
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .project-detail-nav .nav-logo {
@@ -990,9 +1014,6 @@ a.contact-item:hover {
     padding: 0 20px;
   }
 
-  .nav-links {
-    gap: 20px;
-  }
 
   .section {
     padding: 64px 0;
