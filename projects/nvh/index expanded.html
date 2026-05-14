@@ -27,8 +27,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="NVH Test Bench for Refrigerant Hoses – Yaroslav Semenov">
   <meta name="twitter:description" content="Designed a third-generation inertial test bench achieving 8,500 Hz first resonance — 3× better than the previous concept — for BMW's Neue Klasse EV platform. 500+ experiments conducted.">
-  <meta name="twitter:image" content="https://y-semenov.com/media/og/nvh.jpg">
-
+  <meta name="twitter:image" content="https://y-semenov.com/media/og/nvh.jpg">  
   <link rel="stylesheet" href="../../style.css">
 </head>
 <body>
@@ -72,11 +71,11 @@
     <section>
       <h2>Background</h2>
       <p>
-        In electric vehicles, the absence of internal 
-        combustion engine noise makes previously 
-        masked sounds clearly audible. Among these, 
-        vibrations from the A/C compressor transmitted 
-        through refrigerant hoses and rubber mounts 
+        In electric vehicles, the absence of internal
+        combustion engine noise makes previously
+        masked sounds clearly audible. Among these,
+        vibrations from the A/C compressor transmitted
+        through refrigerant hoses and rubber mounts
         into the cabin are a significant NVH challenge.
       </p>
       <figure>
@@ -128,7 +127,7 @@
         the instrumentation the method needs.
       </p>
       <figure>
-        <img src="../../media/projects/nvh/inertial-measurement-integration.jpg" alt="Schematic of the inertial measurement principle">
+        <img src="../../media/projects/nvh/Placeholder.png" alt="Schematic of the inertial measurement principle">
         <figcaption>
           The inertial measurement principle — a hose specimen between an active
           part (driven by the shakers) and a free-floating passive part, with one
@@ -146,35 +145,33 @@
       </p>
       <p>
         The force flowing through the hose is reconstructed the same way.
-        Isolating the passive part in a free-body diagram (see below highlighted green), only two forces
+        Isolating the passive part in a free-body diagram, only two forces
         act on it: the force transmitted by the hose, and the part's own
         inertia. They must balance — so the hose force is just the passive
         part's mass times its measured acceleration,
         <em>F</em><sub>hose</sub> = <em>m</em><sub>2</sub>&#8201;&#8901;&#8201;&#7821;<sub>2</sub>.
-      </p>
-      <figure>
-        <img src="../../media/projects/nvh/free-body-diagramm.jpg" alt="Free-body diagram of the passive part">
-        <figcaption>
-          Free-body diagram of the passive part (highlighted green) — only the hose force and the
-          part's inertia act on it, so <em>F</em><sub>hose</sub> follows directly
-          from mass &times; measured acceleration.
-        </figcaption>
-      </figure>
-      <p>
-      Dividing force by deformation gives the dynamic stiffness of the test specimen:
+        Dividing force by deformation gives the dynamic stiffness:
       </p>
       <div class="formula">
-        <em class="vec">c</em> &nbsp;=&nbsp;
+        <em>c</em> &nbsp;=&nbsp;
         <span class="frac">
-          <span class="num"><em class="vec">F</em><sub>hose</sub></span>
-          <span class="den">&Delta;<em class="vec">x</em></span>
+          <span class="num"><em>F</em><sub>hose</sub></span>
+          <span class="den">&Delta;<em>x</em></span>
         </span>
         &nbsp;=&nbsp;
         <span class="frac">
-          <span class="num"><em>m</em><sub>2</sub> &#8901; <em class="vec">&#7821;</em><sub>2</sub></span>
-          <span class="den">&#8747;&#8747;<em class="vec">&#7821;</em><sub>2</sub> &minus; &#8747;&#8747;<em class="vec">&#7821;</em><sub>1</sub></span>
+          <span class="num"><em>m</em><sub>2</sub> &#8901; &#7821;<sub>2</sub></span>
+          <span class="den">&#8747;&#8747;&#7821;<sub>2</sub> &minus; &#8747;&#8747;&#7821;<sub>1</sub></span>
         </span>
       </div>
+      <figure>
+        <img src="../../media/projects/nvh/Placeholder.png" alt="Free-body diagram of the passive part">
+        <figcaption>
+          Free-body diagram of the passive part — only the hose force and the
+          part's inertia act on it, so <em>F</em><sub>hose</sub> follows directly
+          from mass &times; measured acceleration. <em>Placeholder — illustration to follow.</em>
+        </figcaption>
+      </figure>
       <p>
         The elegance of this is that the entire force path is reconstructed
         from two accelerometers — with no multi-axis load cells, which are
@@ -275,37 +272,130 @@
     </section>
 
     <section>
-      <h2>My Contribution</h2>
+      <h2>First-Principles Redesign</h2>
       <p>
-        Within the first months I learned the 
-        inertial measurement principle, CATIA, 
-        and Simcenter LMS Test.Lab — all from 
-        brief introductions followed by 
-        independent practice.
+        Within my first months on the project I picked up the inertial
+        measurement principle, CATIA, and Simcenter LMS Test.Lab — each
+        from a brief introduction followed by independent practice.
       </p>
       <p>
-        When my supervisor's Gen-3 design concept 
-        reached 3,000–3,300 Hz first resonance 
-        (verified in Simcenter 3D / Nastran), 
-        he concluded it was near-optimal. 
-        I disagreed — and over five personal 
-        weekend days developed an independent concept.
+        My supervisor attacked the resonance problem by adding reinforcement
+        ribs to the existing structure. The reinforced concept reached a
+        first resonance of 3,000–3,300 Hz in Simcenter 3D / Nastran, and he
+        considered it near-optimal — my task, he told me, was to finalise
+        the design and release it to the workshop.
+      </p>
+      <figure>
+        <img src="../../media/projects/nvh/Placeholder.png" alt="Supervisor's rib-reinforced design concept">
+        <figcaption>
+          The incremental approach — reinforcement ribs added to the existing
+          structure, reaching ~3,300 Hz first resonance. <em>Placeholder — illustration to follow.</em>
+        </figcaption>
+      </figure>
+      <div class="callout">
+        <p>
+          "Finalise this design and send it to manufacturing. I have spent
+          over forty hours on it — it is the best possible. Start from
+          scratch and you will just waste time and arrive at the same result."
+        </p>
+      </div>
+      <p>
+        I was not convinced. Three times the operational range leaves little
+        margin, and reinforcing ribs treat the symptom rather than the cause.
+        I asked for a few days and spent five personal weekend days developing
+        an independent concept from first principles.
       </p>
       <p>
-        My design achieved <strong>7,500 Hz</strong> 
-        first resonance in simulation — later refined 
-        collaboratively to <strong>8,500 Hz</strong>. 
-        The concept was manufactured and became 
-        the production bench.
+        A structure's first natural frequency is set by its stiffness
+        <em>k</em> and its mass <em>m</em>:
       </p>
+      <div class="formula">
+        &omega;<sub>0</sub> &nbsp;=&nbsp; &#8730;(&#8201;<em>k</em>&#8201;/&#8201;<em>m</em>&#8201;)
+      </div>
+      <p>
+        To push the resonance up, you want both a stiffer structure and a
+        lighter one. That is exactly where the rib approach falls short. The
+        ribs do raise stiffness — but only locally, around the perimeter, and
+        often not aligned with the load path, while a large open void is left
+        in the centre. Worse, they add both size and mass. Stiffness up, mass
+        up: the two effects largely cancel.
+      </p>
+      <p>
+        I chose the opposite strategy — shrink the parts and close the
+        topology — because it attacks the frequency from both sides at once.
+        Bending stiffness scales steeply with size; for a beam it goes as
+      </p>
+      <div class="formula">
+        <em>k</em> &nbsp;&#8733;&nbsp;
+        <span class="frac">
+          <span class="num">3<em>EI</em></span>
+          <span class="den"><em>L</em><sup>3</sup></span>
+        </span>
+      </div>
+      <p>
+        so making a part shorter raises its stiffness disproportionately —
+        and a smaller part is also a lighter one. Stiffness up hard, mass
+        down: this time the effects compound instead of cancelling.
+      </p>
+      <div class="formula-compare">
+        <div>
+          <div class="formula">
+            Ribs:&nbsp; &omega;<sub>0</sub> = &#8730;(&#8201;<em>k</em>&uarr;&uarr;&#8201;/&#8201;<em>m</em>&uarr;&#8201;)
+          </div>
+          <span class="formula-note">stiffness and mass both rise — small net gain</span>
+        </div>
+        <div>
+          <div class="formula">
+            Shrink &amp; close:&nbsp; &omega;<sub>0</sub> = &#8730;(&#8201;<em>k</em>&uarr;&uarr;&uarr;&#8201;/&#8201;<em>m</em>&darr;&#8201;)
+          </div>
+          <span class="formula-note">stiffness rises hard, mass falls — large net gain</span>
+        </div>
+      </div>
+      <div class="callout">
+        <p>
+          <strong>What stops me from shrinking the outer active part?</strong><br>
+          The inner passive part inside it.
+        </p>
+        <p>
+          <strong>What stops me from shrinking the inner part?</strong><br>
+          Centre-of-gravity alignment, which forced its mass out onto long arms.
+        </p>
+        <p>
+          <strong>What forces the hose specimen to be this long?</strong><br>
+          Nothing — it was tradition, carried over unquestioned from older rig generations.
+        </p>
+      </div>
+      <p>
+        Turning that into geometry meant questioning every fixed dimension in
+        turn. Making the specimen shorter let the passive part's centre of
+        gravity sit close to the hose without long balancing arms; the part
+        could then be made narrower and its mass redistributed into a compact
+        ring. The same moves applied to the outer active part, and the whole
+        rig was reworked into a closed-section geometry.
+      </p>
+      <figure>
+        <img src="../../media/projects/nvh/Placeholder.png" alt="Step-by-step redesign progression">
+        <figcaption>
+          The redesign in steps — shorter specimen, narrower part, mass
+          redistributed into a compact ring, the same principles applied to
+          the outer part, and finally a closed-section geometry.
+          <em>Placeholder — illustration to follow.</em>
+        </figcaption>
+      </figure>
+      <p>
+        The redesign jumped the first resonance from the incremental
+        concept's 3,300 Hz to <strong>7,500 Hz</strong> in simulation in a
+        single step — later refined collaboratively to <strong>8,500 Hz</strong>,
+        three times better than the previous concept. It was manufactured and
+        became the production bench.
+      </p>
+      <figure>
+        <img src="../../media/projects/nvh/contribution-diagram.svg" alt="Resonance frequency comparison chart">
+        <figcaption>
+          First resonance frequency across three test bench generations — my redesign (blue) raised it from 3,300 to 8,500 Hz
+        </figcaption>
+      </figure>
     </section>
-
-    <figure>
-      <img src="../../media/projects/nvh/contribution-diagram.svg" alt="Resonance frequency comparison chart">
-      <figcaption>
-        First resonance frequency across three test bench generations — my redesign (blue) raised it from 3,300 to 8,500 Hz
-      </figcaption>
-    </figure>
 
     <section>
       <h2>Scope of Work</h2>

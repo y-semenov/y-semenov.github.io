@@ -842,6 +842,57 @@ a.contact-item:hover {
   flex-basis: 100%;
 }
 
+/* Formula / fraction (dynamic-stiffness equation) */
+.formula {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 28px 0;
+  font-family: 'Cambria Math', Cambria, 'Times New Roman', serif;
+  font-size: 1.5rem;
+  color: #1a1a1a;
+}
+
+/* upright letters — no italic */
+.formula em {
+  font-style: normal;
+}
+
+/* result variable, left of the equals sign */
+.formula > em {
+  color: #0070c0;
+}
+
+.formula .frac {
+  display: inline-flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.formula .num,
+.formula .den {
+  padding: 2px 12px;
+}
+
+/* numerator = force terms (red), denominator = deformation terms (blue) */
+.formula .num {
+  border-bottom: 1.5px solid #1a1a1a;
+  color: #c00000;
+}
+
+.formula .den {
+  color: #0070c0;
+}
+
+/* vector quantities — underlined symbol */
+.formula .vec {
+  text-decoration: underline;
+  text-decoration-thickness: 1.2px;
+  text-underline-offset: 0.18em;
+}
+
 /* Tab switcher figure */
 .tab-figure .tab-buttons {
   display: flex;
