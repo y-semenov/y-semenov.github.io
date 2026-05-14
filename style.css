@@ -860,6 +860,21 @@ a.contact-item:hover {
   font-style: normal;
 }
 
+/* inline formula — matches the dynamic-stiffness colour */
+.formula-inline,
+.formula-inline em {
+  color: #0070c0;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.formula-inline-red,
+.formula-inline-red em {
+  color: #c00000;
+  font-style: normal;
+  font-weight: 700;
+}
+
 /* result variable, left of the equals sign */
 .formula > em {
   color: #0070c0;
