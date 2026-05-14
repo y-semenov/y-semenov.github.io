@@ -911,6 +911,98 @@ a.contact-item:hover {
   }
 }
 
+/* Callout box (shared — also used by projects/battery) */
+.callout {
+  background: #f7f7f5;
+  border-left: 3px solid #1a1a1a;
+  border-radius: 0 8px 8px 0;
+  padding: 20px 24px;
+  margin: 32px 0;
+}
+
+.callout p {
+  margin: 0;
+  font-size: 1.05rem;
+  color: #333;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+.callout p + p {
+  margin-top: 12px;
+}
+
+/* Math formulas (no library — Unicode + CSS) */
+.formula {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.4em;
+  margin: 28px 0;
+  font-size: 1.15rem;
+  line-height: 1.4;
+  color: #1a1a1a;
+  font-family: "Cambria Math", "Segoe UI", Georgia, serif;
+}
+
+.formula-note {
+  display: block;
+  text-align: center;
+  font-size: 0.82rem;
+  color: #767676;
+  margin: -16px 0 28px;
+}
+
+.frac {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: middle;
+  margin: 0 0.15em;
+}
+
+.frac > .num,
+.frac > .den {
+  display: block;
+  padding: 0 0.5em;
+}
+
+.frac > .num {
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+}
+
+.frac > .den {
+  padding-top: 2px;
+}
+
+.formula sub,
+.formula sup {
+  font-size: 0.7em;
+  line-height: 0;
+}
+
+.formula-compare {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px 40px;
+  margin: 28px 0;
+}
+
+.formula-compare > div {
+  flex: 0 1 auto;
+}
+
+.formula-compare .formula {
+  margin: 0;
+}
+
+.formula-compare .formula-note {
+  margin: 6px 0 0;
+}
+
 /* Tags (skills used) */
 .tags {
   display: flex;
@@ -1012,6 +1104,10 @@ a.contact-item:hover {
 
   .project-detail-nav {
     padding: 0 20px;
+  }
+
+  .formula {
+    font-size: 1rem;
   }
 
 
